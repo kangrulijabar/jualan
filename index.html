@@ -221,58 +221,57 @@
 </div>
 
 <script>
-    // --- PENTING: GANTI DENGAN LINK CSV PUBLISH TO WEB ANDA ---
-    // Link asli: https://docs.google.com/spreadsheets/d/1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs/edit?usp=sharing
-    // Link di bawah ini adalah CONTOH format yang benar (Publish to Web sebagai CSV)
-    const googleSheetURL = "https://docs.google.com/spreadsheets/d/1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs/edit?usp=sharing"; // <--- GANTI DI SINI
+    // --- PENTING: LINK CSV PUBLIK YANG DIPERBAIKI ---
+    // Link edit: https://docs.google.com/spreadsheets/d/1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs/edit?usp=sharing
+    
+    // Perbaikan: Ganti '/edit?usp=sharing' menjadi '/export?format=csv&gid=0'
+    // GID=0 adalah ID default untuk sheet pertama. Jika data Anda di sheet lain, ganti GID-nya.
+    const SHEET_ID = "1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs";
+    const GID_NUMBER = "0"; // Ganti ini jika sheet data Anda bukan sheet pertama
+    const googleSheetURL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID_NUMBER}`;
     // -------------------------------------------------------------
 
     let products = [];
     const listContainer = document.getElementById('productList');
 
-    // Mengambil data dari URL Publik CSV
+    // ... (Fungsi fetchData, renderProducts, filterProducts, dan parseCSV yang tersisa tetap sama)
+
     function fetchData() {
-        if (googleSheetURL.includes("GANTI_INI_DENGAN_LINK_CSV_PUBLIK_ANDA")) {
-            listContainer.innerHTML = `
-                <div class="loading">
-                    <p>⚠️ ERROR: Harap ganti variabel <code>googleSheetURL</code> dengan Link CSV Publik Anda.</p>
-                </div>`;
-            return;
-        }
+        console.log("Mencoba mengambil data dari:", googleSheetURL); // Tampilkan URL yang digunakan
 
         fetch(googleSheetURL)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Gagal mengambil data. Status HTTP: ' + response.status);
+                // Kemungkinan besar error CORS atau link salah.
+                throw new Error('Gagal mengambil data. Cek: (1) Link sudah di-Publish to Web? (2) GID sudah benar?');
             }
             return response.text();
         })
         .then(csvText => {
             products = parseCSV(csvText);
+            console.log("Data berhasil diproses. Jumlah produk:", products.length);
             renderProducts(products);
         })
         .catch(error => {
             listContainer.innerHTML = `
                 <div class="loading">
-                    <p>Gagal memuat data:</p>
-                    <small>${error.message}</small>
-                    <small>Pastikan Link CSV sudah benar & di-publish.</small>
+                    <p>🚨 Gagal Memuat Data dari Google Sheet.</p>
+                    <small>Solusi: Pastikan Google Sheet sudah di-**File > Share > Publish to the Web** dalam format **CSV** dan link-nya sudah benar di kode.</small>
+                    <p class="tagline">Error teknis: ${error.message}</p>
                 </div>`;
-            console.error('Error:', error);
+            console.error('Fetch Error:', error);
         });
     }
 
-
-    // Render Produk dengan Desain Baru
     function renderProducts(data) {
         listContainer.innerHTML = '';
         if(data.length === 0) {
-            listContainer.innerHTML = '<div class="loading"><p>Tidak ada produk ditemukan.</p></div>';
+            listContainer.innerHTML = '<div class="loading"><p>Tidak ada produk ditemukan atau sheet kosong.</p></div>';
             return;
         }
         
         data.forEach(item => {
-            // Lewati baris header
+            // ... (Kode untuk membuat card produk)
             if(!item.name || item.name.toLowerCase().includes("nama produk")) return; 
 
             const card = document.createElement('a');
@@ -291,50 +290,34 @@
                     </div>
                 </div>
                 <div class="btn-check">
-                    <svg viewBox="0 0 24 24">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
+                    <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                 </div>
             `;
             listContainer.appendChild(card);
         });
     }
 
-    // Fungsi Search Filter (Global agar bisa diakses dari onkeyup)
     window.filterProducts = function() {
         const term = document.getElementById('searchInput').value.toLowerCase();
         const filtered = products.filter(p => p.name && p.name.toLowerCase().includes(term));
         renderProducts(filtered);
     }
 
-    // CSV Parser Robust (Sedikit disederhanakan)
     function parseCSV(text) {
-        // Membagi baris
         const lines = text.trim().split('\n');
-        
-        // Asumsi baris pertama adalah header
-        const headers = ["name", "price", "sold", "link"]; 
-        
-        // Memproses data (menggunakan regex sederhana untuk memisahkan koma di luar kutip)
         return lines.map(line => {
-            // Memisahkan berdasarkan koma yang tidak ada di dalam kutip
             const parts = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || []; 
-            
-            if (parts.length < 4) return {}; // Skip baris yang tidak lengkap
-
+            if (parts.length < 4) return {};
             const clean = (str) => str ? str.replace(/^"|"$/g, '').trim() : '';
-            
             return {
                 name: clean(parts[0]),
                 price: clean(parts[1]),
                 sold: clean(parts[2]),
                 link: clean(parts[3])
             };
-        }).filter(item => Object.keys(item).length > 0); // Hapus baris kosong
+        }).filter(item => Object.keys(item).length > 0);
     }
-
-    // Panggil fungsi pengambilan data saat halaman dimuat
+    
     fetchData();
 </script>
 

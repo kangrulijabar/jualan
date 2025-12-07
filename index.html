@@ -2,70 +2,293 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Kang Ruli</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Toko Kang Ruli - Rekomendasi Pilihan</title>
     <style>
-        :root { --primary: #ee4d2d; --bg: #f8f9fa; --text: #333; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; }
-        .app-container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-        
-        /* Header */
-        header { background: linear-gradient(135deg, var(--primary), #ff7e5f); color: white; padding: 30px 20px; text-align: center; border-radius: 0 0 25px 25px; }
-        .profile-pic { width: 90px; height: 90px; background: #fff; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; border: 4px solid rgba(255,255,255,0.3); font-size: 40px; overflow: hidden;}
-        h1 { margin: 5px 0; font-size: 1.4rem; }
-        p.tagline { font-size: 0.9rem; opacity: 0.9; }
+        /* --- 1. SETTING UI/UX DASAR --- */
+        :root {
+            --primary: #ee4d2d;       /* Warna Utama (Shopee Orange) */
+            --primary-dark: #d63f22;  /* Warna Hover */
+            --accent: #fff0e8;        /* Warna Background Badge */
+            --bg-body: #f5f7fa;       /* Background Halaman (Abu muda) */
+            --text-main: #2d3436;     /* Warna Teks Utama (Hampir hitam) */
+            --text-muted: #636e72;    /* Warna Teks Sekunder */
+            --white: #ffffff;
+            --shadow-card: 0 4px 15px rgba(0,0,0,0.05);
+            --shadow-float: 0 10px 25px rgba(238, 77, 45, 0.15);
+        }
 
-        /* Search */
-        .search-box { padding: 20px; position: sticky; top: 0; background: #fff; z-index: 10; border-bottom: 1px solid #eee; }
-        input[type="text"] { width: 100%; padding: 12px 15px; border: 2px solid #eee; border-radius: 50px; outline: none; box-sizing: border-box; }
-        input[type="text"]:focus { border-color: var(--primary); }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-        /* List */
-        .product-list { padding: 10px 15px; }
-        .loading { text-align: center; padding: 20px; color: #888; }
-        .product-card { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px; margin-bottom: 12px; border-radius: 12px; text-decoration: none; color: inherit; border: 1px solid #eee; transition: 0.2s; }
-        .product-card:hover { transform: translateY(-2px); border-color: var(--primary); }
-        .title { font-weight: 600; font-size: 0.95rem; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .price { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
-        .stats { font-size: 0.75rem; color: #888; margin-top: 4px; }
-        .badge { background: #fff0e8; color: var(--primary); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
-        .btn-check { background: var(--primary); color: white; padding: 10px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+
+        .app-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--bg-body);
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- 2. HEADER MODERN --- */
+        header {
+            background: linear-gradient(160deg, var(--primary), #ff8e71);
+            color: var(--white);
+            padding: 40px 20px 50px; /* Padding bawah lebih besar untuk search bar */
+            text-align: center;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 20px rgba(238, 77, 45, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-wrapper {
+            position: relative;
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 12px;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid rgba(255,255,255,0.4);
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        p.tagline {
+            margin: 5px 0 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* --- 3. SEARCH BAR MELAYANG (GLASSMORPHISM) --- */
+        .search-container {
+            padding: 0 20px;
+            margin-top: -25px; /* Menarik ke atas masuk ke header */
+            position: sticky;
+            top: 15px;
+            z-index: 100;
+        }
+
+        .search-box {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 5px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .search-icon {
+            padding-left: 15px;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 10px;
+            border: none;
+            background: transparent;
+            font-size: 1rem;
+            outline: none;
+            color: var(--text-main);
+        }
         
-        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #888; }
+        input[type="text"]::placeholder { color: #a4b0be; }
+
+        /* --- 4. LIST PRODUK & KARTU --- */
+        .product-list {
+            padding: 20px;
+            padding-bottom: 80px; /* Ruang untuk footer */
+        }
+
+        .product-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            padding: 16px;
+            margin-bottom: 15px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid transparent;
+            box-shadow: var(--shadow-card);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efek Hover/Touch */
+        .product-card:active, .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: rgba(238, 77, 45, 0.3);
+        }
+
+        .info {
+            flex: 1;
+            padding-right: 15px;
+        }
+
+        .title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .price {
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 1.15rem;
+        }
+
+        .badge {
+            background: var(--accent);
+            color: var(--primary);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        /* Tombol Beli */
+        .btn-check {
+            background: var(--primary);
+            color: var(--white);
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(238, 77, 45, 0.3);
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        
+        /* Ikon Panah di tombol */
+        .btn-check svg {
+            width: 20px;
+            height: 20px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        /* --- 5. LOADING ANIMATION & FOOTER --- */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--accent);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.85rem;
+            color: #95a5a6;
+            background: var(--bg-body);
+        }
     </style>
 </head>
 <body>
 
 <div class="app-container">
     <header>
-        <div class="profile-pic">
-            <img src="https://via.placeholder.com/150/ee4d2d/FFFFFF?text=KR" style="width:100%; height:100%; object-fit:cover;">
+        <div class="profile-wrapper">
+            <div class="profile-pic">
+                <img src="https://via.placeholder.com/150/ee4d2d/FFFFFF?text=KR" alt="Kang Ruli" style="width:100%; height:100%; object-fit:cover;">
+            </div>
         </div>
         <h1>Toko Kang Ruli</h1>
-        <p class="tagline">"Pilihan Jujur, Harga Akur."</p>
+        <p class="tagline">"Pilihan Jujur, Harga Akur. Dipilih pake hati."</p>
     </header>
 
-    <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Cari barang..." onkeyup="filterProducts()">
+    <div class="search-container">
+        <div class="search-box">
+            <div class="search-icon">🔍</div>
+            <input type="text" id="searchInput" placeholder="Cari barang (cth: Helm, Tablet)..." onkeyup="filterProducts()">
+        </div>
     </div>
 
     <div class="product-list" id="productList">
-        <div class="loading">Memuat data dari Google Sheet...</div>
+        <div class="loading">
+            <div class="spinner"></div>
+            <p>Sedang mengambil data terbaru...</p>
+        </div>
     </div>
 
-    <footer>&copy; 2025 Toko Kang Ruli.</footer>
+    <footer>
+        &copy; 2025 Toko Kang Ruli.<br>
+        Teman Belanja Terpercaya.
+    </footer>
 </div>
 
 <script>
-    // --- PENTING: GANTI LINK DI BAWAH INI ---
-    // Masukkan Link CSV dari langkah "Publish to Web" di sini:
+    // --- PENTING: ISI LINK CSV DI SINI ---
     const googleSheetURL = "https://docs.google.com/spreadsheets/d/1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs/edit?usp=sharing";
-    // ----------------------------------------
+    // -------------------------------------
 
     let products = [];
     const listContainer = document.getElementById('productList');
 
-    // Fungsi mengambil data dari Sheet
+    // Mengambil data
     fetch(googleSheetURL)
     .then(response => response.text())
     .then(csvText => {
@@ -73,60 +296,66 @@
         renderProducts(products);
     })
     .catch(error => {
-        listContainer.innerHTML = '<div class="loading">Gagal memuat data. Pastikan Link CSV benar.</div>';
+        listContainer.innerHTML = `
+            <div class="loading">
+                <p>Gagal memuat data.</p>
+                <small>Pastikan Link CSV sudah benar & di-publish.</small>
+            </div>`;
         console.error('Error:', error);
     });
 
-    // Fungsi Render Produk
+    // Render Produk dengan Desain Baru
     function renderProducts(data) {
         listContainer.innerHTML = '';
         if(data.length === 0) {
-            listContainer.innerHTML = '<div class="loading">Tidak ada produk ditemukan.</div>';
+            listContainer.innerHTML = '<div class="loading"><p>Tidak ada produk ditemukan.</p></div>';
             return;
         }
         
         data.forEach(item => {
-            // Lewati baris kosong atau header
-            if(!item.name || item.name === "Nama Produk") return; 
+            if(!item.name || item.name.toLowerCase().includes("nama produk")) return; 
 
             const card = document.createElement('a');
             card.className = 'product-card';
             card.href = item.link;
             card.target = "_blank";
             
+            // Format angka harga jika perlu (opsional), saat ini menampilkan raw data
             card.innerHTML = `
                 <div class="info">
                     <div class="title">${item.name}</div>
-                    <div class="price">${item.price}</div>
-                    <div class="stats">
-                        <span class="badge">🔥 ${item.sold} Terjual</span>
+                    <div class="price-row">
+                        <div class="price">${item.price}</div>
+                        <div class="badge">
+                            🔥 ${item.sold}
+                        </div>
                     </div>
                 </div>
-                <div class="btn-check">Beli ></div>
+                <div class="btn-check">
+                    <svg viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </div>
             `;
             listContainer.appendChild(card);
         });
     }
 
-    // Fungsi Search
+    // Fungsi Search Filter
     function filterProducts() {
         const term = document.getElementById('searchInput').value.toLowerCase();
         const filtered = products.filter(p => p.name && p.name.toLowerCase().includes(term));
         renderProducts(filtered);
     }
 
-    // Fungsi Parse CSV Sederhana
+    // CSV Parser Robust
     function parseCSV(text) {
         const lines = text.split('\n');
         return lines.map(line => {
-            // Regex untuk menangani koma di dalam tanda kutip (cth: "109,8RB")
             const parts = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
             if (!parts || parts.length < 4) return {};
-            
-            // Bersihkan tanda kutip
             const clean = (str) => str ? str.replace(/^"|"$/g, '').trim() : '';
-
-            // Mapping Kolom: 0=Nama, 1=Harga, 2=Terjual, 3=Link
             return {
                 name: clean(parts[0]),
                 price: clean(parts[1]),

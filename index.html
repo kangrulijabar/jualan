@@ -7,11 +7,11 @@
     <style>
         /* --- 1. SETTING UI/UX DASAR --- */
         :root {
-            --primary: #ee4d2d;       /* Warna Utama (Shopee Orange) */
-            --accent: #fff0e8;        /* Warna Background Badge */
-            --bg-body: #f5f7fa;       /* Background Halaman (Abu muda) */
-            --text-main: #2d3436;     /* Warna Teks Utama */
-            --text-muted: #636e72;    /* Warna Teks Sekunder */
+            --primary: #ee4d2d;
+            --accent: #fff0e8;
+            --bg-body: #f5f7fa;
+            --text-main: #2d3436;
+            --text-muted: #636e72;
             --white: #ffffff;
             --shadow-card: 0 4px 15px rgba(0,0,0,0.05);
         }
@@ -23,17 +23,11 @@
             background-color: var(--bg-body);
             color: var(--text-main);
             margin: 0;
-            padding: 0;
-            line-height: 1.5;
         }
 
-        .app-container {
-            max-width: 500px;
-            margin: 0 auto;
-            min-height: 100vh;
-        }
+        .app-container { max-width: 500px; margin: 0 auto; min-height: 100vh; }
 
-        /* --- 2. HEADER MODERN --- */
+        /* --- 2. HEADER --- */
         header {
             background: linear-gradient(160deg, var(--primary), #ff8e71);
             color: var(--white);
@@ -41,13 +35,10 @@
             text-align: center;
             border-radius: 0 0 30px 30px;
             box-shadow: 0 4px 20px rgba(238, 77, 45, 0.2);
-            position: relative;
-            z-index: 1;
         }
 
         .profile-pic {
-            width: 96px;
-            height: 96px;
+            width: 96px; height: 96px;
             background: var(--white);
             border-radius: 50%;
             margin: 0 auto 12px;
@@ -56,26 +47,23 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
-        .profile-pic img {
-             width: 100%; height: 100%; object-fit: cover;
-        }
+        .profile-pic img { width: 100%; height: 100%; object-fit: cover; }
 
         h1 { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
-        p.tagline { margin: 5px 0 0; font-size: 0.95rem; opacity: 0.9; font-weight: 400; }
+        p.tagline { margin: 5px 0 0; font-size: 0.95rem; opacity: 0.9; }
 
-        /* --- 3. SEARCH BAR MELAYANG --- */
+        /* --- 3. SEARCH BAR --- */
         .search-container {
             padding: 0 20px;
             margin-top: -25px;
             position: sticky;
             top: 15px;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .search-box {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             padding: 5px;
             border-radius: 50px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -84,7 +72,6 @@
         }
 
         .search-icon { padding-left: 15px; color: var(--text-muted); font-size: 1.2rem; }
-
         input[type="text"] {
             width: 100%;
             padding: 12px 10px;
@@ -92,16 +79,10 @@
             background: transparent;
             font-size: 1rem;
             outline: none;
-            color: var(--text-main);
         }
-        
-        input[type="text"]::placeholder { color: #a4b0be; }
 
-        /* --- 4. LIST PRODUK & KARTU --- */
-        .product-list {
-            padding: 20px;
-            padding-bottom: 80px;
-        }
+        /* --- 4. PRODUK --- */
+        .product-list { padding: 20px; padding-bottom: 80px; }
 
         .product-card {
             display: flex;
@@ -114,11 +95,10 @@
             text-decoration: none;
             color: inherit;
             box-shadow: var(--shadow-card);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: 0.25s ease;
         }
 
-        /* Efek Hover/Active */
-        .product-card:active, .product-card:hover {
+        .product-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
@@ -136,7 +116,7 @@
             overflow: hidden;
         }
 
-        .price-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+        .price-row { display: flex; align-items: center; gap: 8px; }
 
         .price { color: var(--primary); font-weight: 800; font-size: 1.15rem; }
 
@@ -147,177 +127,150 @@
             border-radius: 6px;
             font-size: 0.75rem;
             font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 3px;
         }
 
-        /* Tombol Beli */
         .btn-check {
             background: var(--primary);
             color: var(--white);
-            width: 44px;
-            height: 44px;
+            width: 44px; height: 44px;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 10px rgba(238, 77, 45, 0.3);
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 10px rgba(238,77,45,0.3);
         }
-        
+
         .btn-check svg {
-            width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.5;
-            fill: none; stroke-linecap: round; stroke-linejoin: round;
+            width: 20px; height: 20px; stroke-width: 2.5; fill: none;
+            stroke-linecap: round; stroke-linejoin: round;
         }
 
-        /* --- 5. LOADING & FOOTER --- */
-        .loading { text-align: center; padding: 40px; color: var(--text-muted); }
-        .spinner {
-            width: 40px; height: 40px; border: 4px solid var(--accent);
-            border-top: 4px solid var(--primary); border-radius: 50%;
-            animation: spin 1s linear infinite; margin: 0 auto 15px;
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
+        /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 30px;
             font-size: 0.85rem;
             color: #95a5a6;
-            background: var(--bg-body);
         }
     </style>
 </head>
 <body>
 
 <div class="app-container">
+
     <header>
         <div class="profile-pic">
             <img src="https://via.placeholder.com/150/ee4d2d/FFFFFF?text=KR" alt="Kang Ruli">
         </div>
         <h1>Toko Kang Ruli</h1>
-        <p class="tagline">"Pilihan Jujur, Harga Akur. Dipilih pake hati."</p>
+        <p class="tagline">"Pilihan Jujur, Harga Akur."</p>
     </header>
 
     <div class="search-container">
         <div class="search-box">
             <div class="search-icon">🔍</div>
-            <input type="text" id="searchInput" placeholder="Cari barang (cth: Helm, Tablet)..." onkeyup="filterProducts()">
+            <input type="text" id="searchInput" placeholder="Cari barang..." onkeyup="filterProducts()">
         </div>
     </div>
 
     <div class="product-list" id="productList">
         <div class="loading">
             <div class="spinner"></div>
-            <p>Sedang mengambil data terbaru...</p>
+            <p>Sedang mengambil data...</p>
         </div>
     </div>
 
     <footer>
-        &copy; 2025 Toko Kang Ruli.<br>
-        Teman Belanja Terpercaya.
+        &copy; 2025 Toko Kang Ruli.<br>Teman Belanja Terpercaya.
     </footer>
 </div>
 
 <script>
-    // --- PENTING: LINK CSV PUBLIK YANG DIPERBAIKI ---
-    // Link edit: https://docs.google.com/spreadsheets/d/1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs/edit?usp=sharing
-    
-    // Perbaikan: Ganti '/edit?usp=sharing' menjadi '/export?format=csv&gid=0'
-    // GID=0 adalah ID default untuk sheet pertama. Jika data Anda di sheet lain, ganti GID-nya.
+    // === KONFIGURASI GOOGLE SHEET CSV ===
     const SHEET_ID = "1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs";
-    const GID_NUMBER = "0"; // Ganti ini jika sheet data Anda bukan sheet pertama
-    const googleSheetURL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID_NUMBER}`;
-    // -------------------------------------------------------------
+    const GID = "0";
+    const googleSheetURL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=${GID}`;
 
     let products = [];
-    const listContainer = document.getElementById('productList');
+    const listContainer = document.getElementById("productList");
 
-    // ... (Fungsi fetchData, renderProducts, filterProducts, dan parseCSV yang tersisa tetap sama)
-
+    // === FETCH DATA ===
     function fetchData() {
-        console.log("Mencoba mengambil data dari:", googleSheetURL); // Tampilkan URL yang digunakan
-
         fetch(googleSheetURL)
-        .then(response => {
-            if (!response.ok) {
-                // Kemungkinan besar error CORS atau link salah.
-                throw new Error('Gagal mengambil data. Cek: (1) Link sudah di-Publish to Web? (2) GID sudah benar?');
-            }
-            return response.text();
+        .then(res => {
+            if (!res.ok) throw new Error("Data gagal diambil.");
+            return res.text();
         })
-        .then(csvText => {
-            products = parseCSV(csvText);
-            console.log("Data berhasil diproses. Jumlah produk:", products.length);
+        .then(csv => {
+            products = parseCSV(csv);
             renderProducts(products);
         })
-        .catch(error => {
+        .catch(err => {
             listContainer.innerHTML = `
                 <div class="loading">
-                    <p>🚨 Gagal Memuat Data dari Google Sheet.</p>
-                    <small>Solusi: Pastikan Google Sheet sudah di-**File > Share > Publish to the Web** dalam format **CSV** dan link-nya sudah benar di kode.</small>
-                    <p class="tagline">Error teknis: ${error.message}</p>
-                </div>`;
-            console.error('Fetch Error:', error);
+                    <p>❌ Tidak bisa memuat data.</p>
+                    <small>Pastikan *Publish to Web > CSV* sudah aktif.</small>
+                </div>
+            `;
         });
     }
 
+    // === RENDER PRODUK ===
     function renderProducts(data) {
-        listContainer.innerHTML = '';
-        if(data.length === 0) {
-            listContainer.innerHTML = '<div class="loading"><p>Tidak ada produk ditemukan atau sheet kosong.</p></div>';
+        listContainer.innerHTML = "";
+
+        if (data.length === 0) {
+            listContainer.innerHTML = `<div class="loading"><p>Data kosong.</p></div>`;
             return;
         }
-        
-        data.forEach(item => {
-            // ... (Kode untuk membuat card produk)
-            if(!item.name || item.name.toLowerCase().includes("nama produk")) return; 
 
-            const card = document.createElement('a');
-            card.className = 'product-card';
+        data.forEach(item => {
+            if (!item.name || item.name.toLowerCase().includes("nama produk")) return;
+
+            const card = document.createElement("a");
+            card.className = "product-card";
             card.href = item.link;
             card.target = "_blank";
-            
+
             card.innerHTML = `
                 <div class="info">
                     <div class="title">${item.name}</div>
                     <div class="price-row">
                         <div class="price">${item.price}</div>
-                        <div class="badge">
-                            🔥 ${item.sold}
-                        </div>
+                        <div class="badge">🔥 ${item.sold}</div>
                     </div>
                 </div>
                 <div class="btn-check">
-                    <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    <svg viewBox="0 0 24 24">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
                 </div>
             `;
+
             listContainer.appendChild(card);
         });
     }
 
-    window.filterProducts = function() {
-        const term = document.getElementById('searchInput').value.toLowerCase();
-        const filtered = products.filter(p => p.name && p.name.toLowerCase().includes(term));
-        renderProducts(filtered);
+    // === FILTER PENCARIAN ===
+    function filterProducts() {
+        const q = document.getElementById("searchInput").value.toLowerCase();
+        renderProducts(products.filter(p => p.name.toLowerCase().includes(q)));
     }
 
+    // === PARSE CSV KUAT ===
     function parseCSV(text) {
-        const lines = text.trim().split('\n');
-        return lines.map(line => {
-            const parts = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || []; 
-            if (parts.length < 4) return {};
-            const clean = (str) => str ? str.replace(/^"|"$/g, '').trim() : '';
+        const rows = text.trim().split("\n");
+        return rows.map(row => {
+            const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || [];
+            const clean = s => s?.replace(/^"|"$/g, "").trim();
             return {
-                name: clean(parts[0]),
-                price: clean(parts[1]),
-                sold: clean(parts[2]),
-                link: clean(parts[3])
+                name: clean(cols[0]),
+                price: clean(cols[1]),
+                sold: clean(cols[2]),
+                link: clean(cols[3])
             };
-        }).filter(item => Object.keys(item).length > 0);
+        }).filter(r => r.name);
     }
-    
+
     fetchData();
 </script>
 

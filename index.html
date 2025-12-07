@@ -3,149 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toko Kang Ruli - Racun Belanja Pilihan</title>
+    <title>Toko Kang Ruli</title>
     <style>
-        :root {
-            --primary: #ee4d2d; /* Warna Oranye Shopee */
-            --bg: #f8f9fa;
-            --text: #333;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            margin: 0;
-            padding: 0;
-            color: var(--text);
-        }
-        /* Container HP */
-        .app-container {
-            max-width: 480px;
-            margin: 0 auto;
-            background: #fff;
-            min-height: 100vh;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
-        }
+        :root { --primary: #ee4d2d; --bg: #f8f9fa; --text: #333; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; }
+        .app-container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
         
-        /* Header Profil */
-        header {
-            background: linear-gradient(135deg, var(--primary), #ff7e5f);
-            color: white;
-            padding: 30px 20px;
-            text-align: center;
-            border-radius: 0 0 25px 25px;
-        }
-        .profile-pic {
-            width: 90px;
-            height: 90px;
-            background-color: #fff;
-            border-radius: 50%;
-            margin: 0 auto 10px;
-            border: 4px solid rgba(255,255,255,0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            overflow: hidden;
-        }
-        h1 { margin: 5px 0; font-size: 1.4rem; font-weight: 700; }
-        p.tagline { margin: 0; font-size: 0.9rem; opacity: 0.9; }
+        /* Header */
+        header { background: linear-gradient(135deg, var(--primary), #ff7e5f); color: white; padding: 30px 20px; text-align: center; border-radius: 0 0 25px 25px; }
+        .profile-pic { width: 90px; height: 90px; background: #fff; border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; border: 4px solid rgba(255,255,255,0.3); font-size: 40px; overflow: hidden;}
+        h1 { margin: 5px 0; font-size: 1.4rem; }
+        p.tagline { font-size: 0.9rem; opacity: 0.9; }
 
-        /* Search Bar */
-        .search-box {
-            padding: 20px;
-            position: sticky;
-            top: 0;
-            background: #fff;
-            z-index: 10;
-            border-bottom: 1px solid #eee;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #eee;
-            border-radius: 50px;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: 0.3s;
-        }
-        input[type="text"]:focus {
-            border-color: var(--primary);
-        }
+        /* Search */
+        .search-box { padding: 20px; position: sticky; top: 0; background: #fff; z-index: 10; border-bottom: 1px solid #eee; }
+        input[type="text"] { width: 100%; padding: 12px 15px; border: 2px solid #eee; border-radius: 50px; outline: none; box-sizing: border-box; }
+        input[type="text"]:focus { border-color: var(--primary); }
 
-        /* Product List */
-        .product-list {
-            padding: 10px 15px;
-        }
-        .product-card {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 12px;
-            text-decoration: none;
-            color: inherit;
-            border: 1px solid #eee;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .product-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            border-color: var(--primary);
-        }
-        .info {
-            flex: 1;
-            padding-right: 10px;
-        }
-        .title {
-            font-weight: 600;
-            font-size: 0.95rem;
-            margin-bottom: 5px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .price {
-            color: var(--primary);
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        .stats {
-            font-size: 0.75rem;
-            color: #888;
-            margin-top: 4px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .badge {
-            background: #fff0e8;
-            color: var(--primary);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-        }
-        .btn-check {
-            background: var(--primary);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            font-size: 0.8rem;
-            color: #888;
-            background: #f8f9fa;
-        }
+        /* List */
+        .product-list { padding: 10px 15px; }
+        .loading { text-align: center; padding: 20px; color: #888; }
+        .product-card { display: flex; justify-content: space-between; align-items: center; background: white; padding: 15px; margin-bottom: 12px; border-radius: 12px; text-decoration: none; color: inherit; border: 1px solid #eee; transition: 0.2s; }
+        .product-card:hover { transform: translateY(-2px); border-color: var(--primary); }
+        .title { font-weight: 600; font-size: 0.95rem; margin-bottom: 5px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .price { color: var(--primary); font-weight: 700; font-size: 1.1rem; }
+        .stats { font-size: 0.75rem; color: #888; margin-top: 4px; }
+        .badge { background: #fff0e8; color: var(--primary); padding: 2px 6px; border-radius: 4px; font-size: 0.7rem; }
+        .btn-check { background: var(--primary); color: white; padding: 10px 15px; border-radius: 8px; font-weight: 600; font-size: 0.9rem; white-space: nowrap; }
+        
+        footer { text-align: center; padding: 30px; font-size: 0.8rem; color: #888; }
     </style>
 </head>
 <body>
@@ -153,131 +39,65 @@
 <div class="app-container">
     <header>
         <div class="profile-pic">
-            <img src="https://via.placeholder.com/150/ee4d2d/FFFFFF?text=KR" alt="Kang Ruli" style="width:100%; height:100%; object-fit:cover;">
+            <img src="https://via.placeholder.com/150/ee4d2d/FFFFFF?text=KR" style="width:100%; height:100%; object-fit:cover;">
         </div>
         <h1>Toko Kang Ruli</h1>
-        <p class="tagline">"Pilihan Jujur, Harga Akur. Dipilih pake hati."</p>
+        <p class="tagline">"Pilihan Jujur, Harga Akur."</p>
     </header>
 
     <div class="search-box">
-        <input type="text" id="searchInput" placeholder="Cari barang (cth: Helm, Tablet)..." onkeyup="filterProducts()">
+        <input type="text" id="searchInput" placeholder="Cari barang..." onkeyup="filterProducts()">
     </div>
 
     <div class="product-list" id="productList">
-        </div>
+        <div class="loading">Memuat data dari Google Sheet...</div>
+    </div>
 
-    <footer>
-        &copy; 2025 Toko Kang Ruli.<br>Teman Belanja Terpercaya.
-    </footer>
+    <footer>&copy; 2025 Toko Kang Ruli.</footer>
 </div>
 
 <script>
-    // Data Produk (Hanya Nama, Harga, Terjual, dan Link Affiliate)
-    // Tidak ada data komisi di sini.
-    const products = [
-        {name: "Helm MLA J5 Grey Glosy SNI", price: "109,8RB", sold: "10RB+", link: "https://s.shopee.co.id/9pX56uuHvt"},
-        {name: "Tablet Android 13 Pad 11.6inch 5G Samsung Galaxy Style", price: "938,0RB", sold: "1RB+", link: "https://s.shopee.co.id/9KaoVzwBwo"},
-        {name: "Goojodoq Kipas GFS001 Turbo High-Speed", price: "133,0RB", sold: "10RB+", link: "https://s.shopee.co.id/9UuEiIvYbr"},
-        {name: "TV Android Smart 32 inch - 43 inch 4K Garansi 3 Tahun", price: "1,4JT", sold: "10RB+", link: "https://s.shopee.co.id/AKTLhpsNv2"},
-        {name: "ZHYO Penguat Sinyal WiFi 1200Mbps 4 Antena", price: "78,9RB", sold: "10RB+", link: "https://s.shopee.co.id/AUmlu8rka5"},
-        {name: "Susu Kambing Rasa Original 1000gr", price: "60,0RB", sold: "10RB+", link: "https://s.shopee.co.id/9zqVJDteb0"},
-        {name: "Makita 9980VF Impact Driver 2 Baterai 3 Mode", price: "305,0RB", sold: "1RB+", link: "https://s.shopee.co.id/AA9vVWt1G3"},
-        {name: "Celosia Top V-Neck Long Sleeve - #108", price: "37,1RB", sold: "10RB+", link: "https://s.shopee.co.id/5fhW9GA9OC"},
-        {name: "Makita 9980VF Bor Listrik 2 Baterai 10mm", price: "282,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5q0wLZ9W3F"},
-        {name: "ANGOLA Lemari Pakaian Anak 4-5 Tingkat", price: "66,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5L4fkeBQ4A"},
-        {name: "Ecosen Smart Battery Charger 12V/24V LCD", price: "98,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5VO5wxAmjD"},
-        {name: "Celana Sport Dewasa Pria/Wanita Murah", price: "14,5RB", sold: "10RB+", link: "https://s.shopee.co.id/6KxCwU7c2O"},
-        {name: "Flatshoes Jelly Wanita Import AntiSlip", price: "36,0RB", sold: "7RB+", link: "https://s.shopee.co.id/6VGd8n6yhR"},
-        {name: "Mesin Obeng Listrik Bor Cordless Set Koper", price: "70,7RB", sold: "10RB+", link: "https://s.shopee.co.id/60KMXs8siM"},
-        {name: "YG300 Proyektor Mini Portable Android 4K", price: "209,0RB", sold: "3RB+", link: "https://s.shopee.co.id/6AdmkB8FNP"},
-        {name: "Paket 1 Get 3 Polo Shirt Pria Premium", price: "76,1RB", sold: "10RB+", link: "https://s.shopee.co.id/70Ctji54ga"},
-        {name: "Rok Canda Tutu Kekinian Korean Style", price: "33,6RB", sold: "10RB+", link: "https://s.shopee.co.id/7AWJw14RLd"},
-        {name: "Animasi Mata Running Text RGB Dinamis", price: "564,0RB", sold: "736", link: "https://s.shopee.co.id/6fa3L66LMY"},
-        {name: "Celana Jeans Wanita High Waist Loose Premium", price: "57,0RB", sold: "10RB+", link: "https://s.shopee.co.id/6ptTXP5i1b"},
-        {name: "DRACCO Sarung Mobil Premium 4 Layer Waterproof", price: "600,0RB", sold: "10RB+", link: "https://s.shopee.co.id/7fSaWw2XKm"},
-        {name: "ZPER Cordless Drill Set 124in1 Brushless", price: "89,0RB", sold: "872", link: "https://s.shopee.co.id/7pm0jF1tzp"},
-        {name: "Biled Turbo SE V2 2.5 inch 60W Original", price: "490,0RB", sold: "5RB+", link: "https://s.shopee.co.id/7Kpk8K3o0k"},
-        {name: "Phantom Manikin Full Body Trauma Nursing", price: "6,2JT", sold: "7", link: "https://s.shopee.co.id/7V9AKd3Afn"},
-        {name: "Ciput Antem Mika Pet Marsya Spandek", price: "5,9RB", sold: "10RB+", link: "https://s.shopee.co.id/30gkyMKInw"},
-        {name: "Plat Nomor Motor Akrilik Timbul Anti Karat", price: "71,9RB", sold: "10RB+", link: "https://s.shopee.co.id/3B0BAfJfSz"},
-        {name: "Charger Aki Motor Mobil 12V/24V 1200A Otomatis", price: "98,0RB", sold: "10RB+", link: "https://s.shopee.co.id/2g3uZkLZTu"},
-        {name: "Yooyi Baju Tidur Wanita Katun Motif Lucu", price: "49,9RB", sold: "10RB+", link: "https://s.shopee.co.id/2qNKm3Kw8x"},
-        {name: "Civago Mug Kopi Stainless Steel Anti Bocor", price: "179,0RB", sold: "10RB+", link: "https://s.shopee.co.id/3fwRlaHlS8"},
-        {name: "Selimut Bulu Motif Aesthetic 115x180cm", price: "26,4RB", sold: "2RB+", link: "https://s.shopee.co.id/3qFrxtH87B"},
-        {name: "Tifale Paket Kompor Portable + Pemanggang BBQ", price: "169,0RB", sold: "472", link: "https://s.shopee.co.id/3LJbMyJ286"},
-        {name: "PO MadameMalla Dress", price: "116,0RB", sold: "200", link: "https://s.shopee.co.id/3Vd1ZHIOn9"},
-        {name: "Civago Mug Kopi Stainless Steel Vakum", price: "129,0RB", sold: "10RB+", link: "https://s.shopee.co.id/4LC8YoFE6K"},
-        {name: "Fashion Elasso id 2 D 07.12", price: "66,0RB", sold: "6RB+", link: "https://s.shopee.co.id/4VVYl7EalN"},
-        {name: "Paket Combo Tahun Baru Kompor + Grill", price: "148,5RB", sold: "519", link: "https://s.shopee.co.id/40ZIACGUmI"},
-        {name: "Ellena Dress Gamis Rayon Adem", price: "124,9RB", sold: "7RB+", link: "https://s.shopee.co.id/4AsiMVFrRL"},
-        {name: "Khalifah Sarimbit Lebaran Gamis Koko", price: "78,0RB", sold: "2", link: "https://s.shopee.co.id/50RpM2CgkW"},
-        {name: "Ecentio Tumbler Stainless 900ml Tahan 24 Jam", price: "145,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5AlFYLC3PZ"},
-        {name: "Jas Hujan Hoodie Pria Wanita Darel Fahri", price: "66,0RB", sold: "10RB+", link: "https://s.shopee.co.id/4foyxQDxQU"},
-        {name: "PO MadameMalla Dress Batch 2", price: "95,0RB", sold: "1RB+", link: "https://s.shopee.co.id/4q8P9jDK5X"},
-        {name: "COOGER Alat Pel Lantai Spray Mop", price: "79,9RB", sold: "10RB+", link: "https://s.shopee.co.id/LfznSUSDg"},
-        {name: "Pero Granite Knife Set 2pcs Tajam", price: "99,0RB", sold: "10RB+", link: "https://s.shopee.co.id/VzPzlTosj"},
-        {name: "Missolla Mukena Katun Rayon Travel Friendly", price: "59,0RB", sold: "2RB+", link: "https://s.shopee.co.id/139OqVite"},
-        {name: "PO MadameMalla Dress Batch 3", price: "110,0RB", sold: "308", link: "https://s.shopee.co.id/BMZb9V5Yh"},
-        {name: "MIXIO Kipas Portable High Speed 100 Gear", price: "288,0RB", sold: "10RB+", link: "https://s.shopee.co.id/10vgagRurs"},
-        {name: "Wallpaper Stiker Dinding Tebal Marble", price: "74,1RB", sold: "10RB+", link: "https://s.shopee.co.id/1BF6mzRHWv"},
-        {name: "Sepatu Ajan Shop Live", price: "295,8RB", sold: "10RB+", link: "https://s.shopee.co.id/gIqC4TBXq"},
-        {name: "Jilbab Segitiga Instan Katbol Daisy", price: "37,9RB", sold: "10RB+", link: "https://s.shopee.co.id/qcGONSYCt"},
-        {name: "Sanma Cobek Alumunium Anti Lengket 20cm", price: "40,9RB", sold: "10RB+", link: "https://s.shopee.co.id/1gBNNuPNW4"},
-        {name: "Karpet Polyester Jumbo Motif Eropa Anti Slip", price: "192,6RB", sold: "10RB+", link: "https://s.shopee.co.id/1qUnaDOkB7"},
-        {name: "MAKUKU Comfort Fit Super Jumbo (Live)", price: "60,0RB", sold: "10RB+", link: "https://s.shopee.co.id/1LYWzIQeC2"},
-        {name: "PO Missolla Dress", price: "103,0RB", sold: "391", link: "https://s.shopee.co.id/1VrxBbQ0r5"},
-        {name: "Setelan Wanita Jumbo Crepe 3Pcs", price: "123,0RB", sold: "10RB+", link: "https://s.shopee.co.id/2LR4B8MqAG"},
-        {name: "Promo Hemat 3Pcs Bra Seamless M-XXL", price: "108,8RB", sold: "10RB+", link: "https://s.shopee.co.id/2VkUNRMCpJ"},
-        {name: "Baby Happy Pants Paket 4 Ball / Karton", price: "173,8RB", sold: "10RB+", link: "https://s.shopee.co.id/20oDmWO6qE"},
-        {name: "Hijab Segiempat Katun Voal", price: "126,0RB", sold: "4RB+", link: "https://s.shopee.co.id/2B7dypNTVH"},
-        {name: "Nuvo Family Sabun Cair Kuning 800ml x5", price: "195,0RB", sold: "10RB+", link: "https://s.shopee.co.id/8V1hWSzMeW"},
-        {name: "Glad2Glow 2-in-1 Cushion Powder", price: "130,0RB", sold: "10RB+", link: "https://s.shopee.co.id/8KiHK9zzzV"},
-        {name: "Tebus Satuan SG Firda Collection", price: "191,0RB", sold: "10RB+", link: "https://s.shopee.co.id/8AOr7r0dKU"},
-        {name: "Gamis Canio Baraya & Shakira Premium", price: "200,0RB", sold: "827", link: "https://s.shopee.co.id/805QvY1GfT"},
-        {name: "Bra Wanita Renda Jumbo Size 36-44", price: "22,9RB", sold: "998", link: "https://s.shopee.co.id/9AHOJgwpIi"},
-        {name: "Rak Troli 4 Susun Plastik Kokoh", price: "35,6RB", sold: "10RB+", link: "https://s.shopee.co.id/8zxy7NxSdh"},
-        {name: "Maybelline Superstay Matte Ink Lipstick", price: "89,1RB", sold: "10RB+", link: "https://s.shopee.co.id/8peXv4y5yg"},
-        {name: "Velle Gelas Tumbler Aesthetic 600/800ml", price: "19,6RB", sold: "8RB+", link: "https://s.shopee.co.id/8fL7ilyjJf"},
-        {name: "Blender Daging Stainless Chopper Serbaguna", price: "61,8RB", sold: "10RB+", link: "https://s.shopee.co.id/9pX56uuHwu"},
-        {name: "HUES BH Big Size Push Up Tanpa Kawat", price: "21,5RB", sold: "3RB+", link: "https://s.shopee.co.id/9fDeubuvHt"},
-        {name: "Baju/Gamis Firda Collection", price: "206,0RB", sold: "10RB+", link: "https://s.shopee.co.id/9UuEiIvYcs"},
-        {name: "Flashsale Sprei Saja 180x200", price: "36,0RB", sold: "2RB+", link: "https://s.shopee.co.id/9KaoVzwBxr"},
-        {name: "Kaos Busui Wanita Katun Adem", price: "112,0RB", sold: "6RB+", link: "https://s.shopee.co.id/AUmlu8rkb6"},
-        {name: "Bra Wanita Motif Garis Jumbo", price: "22,9RB", sold: "1RB+", link: "https://s.shopee.co.id/AKTLhpsNw5"},
-        {name: "Tebus Murah Baju NFashion", price: "80,0RB", sold: "10RB+", link: "https://s.shopee.co.id/AA9vVWt1H4"},
-        {name: "Selimut Bulu Microfiber Ratu Sprei", price: "26,4RB", sold: "10RB+", link: "https://s.shopee.co.id/9zqVJDtec3"},
-        {name: "Vaseline Healthy Bright Lotion 400ml Triplepack", price: "142,4RB", sold: "10RB+", link: "https://s.shopee.co.id/5q0wLZ9W4G"},
-        {name: "Rak Toilet Serbaguna 4 Tingkat", price: "25,5RB", sold: "10RB+", link: "https://s.shopee.co.id/5fhW9GA9PF"},
-        {name: "Tisu King 10 Pack 360 Helai", price: "33,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5VO5wxAmkE"},
-        {name: "Jims Honey Pevita Bag Sling Bag", price: "139,0RB", sold: "6RB+", link: "https://s.shopee.co.id/5L4fkeBQ5D"},
-        {name: "POCO C71 4GB/128GB Baterai 5200mAh", price: "1,1JT", sold: "10RB+", link: "https://s.shopee.co.id/6VGd8n6yiS"},
-        {name: "Nuvo Family Sabun Cair Merah 800ml x5", price: "195,0RB", sold: "10RB+", link: "https://s.shopee.co.id/6KxCwU7c3R"},
-        {name: "Paket Hemat CD 6 Pcs Celana Dalam Wanita", price: "57,8RB", sold: "10RB+", link: "https://s.shopee.co.id/6AdmkB8FOQ"},
-        {name: "Mukena Traveling 2in1 Katun Micro", price: "47,2RB", sold: "10RB+", link: "https://s.shopee.co.id/60KMXs8sjP"},
-        {name: "JTKIDS Setelan Anak Laki Laki Gavin", price: "21,5RB", sold: "558", link: "https://s.shopee.co.id/7AWJw14RMe"},
-        {name: "Nuvo Family Sabun Cair Mild Protect 800ml x5", price: "195,0RB", sold: "10RB+", link: "https://s.shopee.co.id/70Ctji54hd"},
-        {name: "Cadbury Dairy Milk Chunks Sharebag x5", price: "122,5RB", sold: "10RB+", link: "https://s.shopee.co.id/6ptTXP5i2c"},
-        {name: "Alfredkids Setelan Baju Anak Baseball", price: "25,0RB", sold: "1RB+", link: "https://s.shopee.co.id/6fa3L66LNb"},
-        {name: "Rak Troli Plastik 3-4 Susun Beroda", price: "28,0RB", sold: "10RB+", link: "https://s.shopee.co.id/7pm0jF1u0q"},
-        {name: "SoKlin Softergent Bubuk 5000 Karton", price: "111,2RB", sold: "10RB+", link: "https://s.shopee.co.id/7fSaWw2XLp"},
-        {name: "Giv Beauty Sabun Cair Ungu 800ml x5", price: "195,0RB", sold: "10RB+", link: "https://s.shopee.co.id/7V9AKd3Ago"},
-        {name: "Jims Honey Tas Selempang Nikita Bag", price: "140,0RB", sold: "4RB+", link: "https://s.shopee.co.id/7Kpk8K3o1n"}
-    ];
+    // --- PENTING: GANTI LINK DI BAWAH INI ---
+    // Masukkan Link CSV dari langkah "Publish to Web" di sini:
+    const googleSheetURL = "MASUKKAN_LINK_GOOGLE_SHEET_CSV_DISINI";
+    // ----------------------------------------
 
+    let products = [];
     const listContainer = document.getElementById('productList');
 
+    // Fungsi mengambil data dari Sheet
+    fetch(googleSheetURL)
+    .then(response => response.text())
+    .then(csvText => {
+        products = parseCSV(csvText);
+        renderProducts(products);
+    })
+    .catch(error => {
+        listContainer.innerHTML = '<div class="loading">Gagal memuat data. Pastikan Link CSV benar.</div>';
+        console.error('Error:', error);
+    });
+
+    // Fungsi Render Produk
     function renderProducts(data) {
         listContainer.innerHTML = '';
+        if(data.length === 0) {
+            listContainer.innerHTML = '<div class="loading">Tidak ada produk ditemukan.</div>';
+            return;
+        }
+        
         data.forEach(item => {
+            // Lewati baris kosong atau header
+            if(!item.name || item.name === "Nama Produk") return; 
+
             const card = document.createElement('a');
             card.className = 'product-card';
-            card.href = item.link; // Link ini mengarah ke Affiliate Shopee (Cuan tetap masuk ke Anda)
-            card.target = "_blank"; 
+            card.href = item.link;
+            card.target = "_blank";
             
             card.innerHTML = `
                 <div class="info">
                     <div class="title">${item.name}</div>
-                    <div class="price">Rp ${item.price}</div>
+                    <div class="price">${item.price}</div>
                     <div class="stats">
                         <span class="badge">🔥 ${item.sold} Terjual</span>
                     </div>
@@ -288,19 +108,33 @@
         });
     }
 
-    // Fungsi Search Filter
+    // Fungsi Search
     function filterProducts() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const filteredData = products.filter(item => 
-            item.name.toLowerCase().includes(filter)
-        );
-        renderProducts(filteredData);
+        const term = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = products.filter(p => p.name && p.name.toLowerCase().includes(term));
+        renderProducts(filtered);
     }
 
-    // Render awal semua produk
-    renderProducts(products);
+    // Fungsi Parse CSV Sederhana
+    function parseCSV(text) {
+        const lines = text.split('\n');
+        return lines.map(line => {
+            // Regex untuk menangani koma di dalam tanda kutip (cth: "109,8RB")
+            const parts = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+            if (!parts || parts.length < 4) return {};
+            
+            // Bersihkan tanda kutip
+            const clean = (str) => str ? str.replace(/^"|"$/g, '').trim() : '';
 
+            // Mapping Kolom: 0=Nama, 1=Harga, 2=Terjual, 3=Link
+            return {
+                name: clean(parts[0]),
+                price: clean(parts[1]),
+                sold: clean(parts[2]),
+                link: clean(parts[3])
+            };
+        });
+    }
 </script>
 
 </body>

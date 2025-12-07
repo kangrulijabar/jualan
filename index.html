@@ -3,494 +3,305 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalog Produk Affiliate Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Toko Kang Ruli - Racun Belanja Pilihan</title>
     <style>
         :root {
-            --primary: #ee4d2d; /* Shopee Orange */
-            --primary-hover: #d73211;
-            --secondary: #26aa99; /* Green Accent */
-            --bg-body: #f3f4f6;
-            --bg-card: #ffffff;
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --primary: #ee4d2d; /* Warna Oranye Shopee */
+            --bg: #f8f9fa;
+            --text: #333;
         }
-
-        * {
-            box-sizing: border-box;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
             margin: 0;
             padding: 0;
+            color: var(--text);
         }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            padding-bottom: 50px;
-        }
-
-        /* HEADER */
-        header {
-            background: var(--bg-card);
-            padding: 20px 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1200px;
+        /* Container HP */
+        .app-container {
+            max-width: 480px;
             margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        @media(min-width: 768px) {
-            .header-container {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-        }
-
-        h1 {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* SEARCH BAR */
-        .search-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .search-wrapper input {
-            width: 100%;
-            padding: 12px 20px;
-            padding-left: 45px;
-            border-radius: 50px;
-            border: 1px solid var(--border);
-            background: var(--bg-body);
-            font-size: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .search-wrapper input:focus {
-            outline: none;
-            border-color: var(--primary);
             background: #fff;
-            box-shadow: 0 0 0 4px rgba(238, 77, 45, 0.1);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
-
-        .search-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
+        
+        /* Header Profil */
+        header {
+            background: linear-gradient(135deg, var(--primary), #ff7e5f);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 0 0 25px 25px;
         }
-
-        /* GRID LAYOUT */
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        /* CARD DESIGN */
-        .card {
-            background: var(--bg-card);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid var(--border);
-            transition: transform 0.2s, box-shadow 0.2s;
-            position: relative;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
-        }
-
-        /* Placeholder Image since CSV has no images */
-        .card-img-placeholder {
-            height: 140px;
-            background: linear-gradient(135deg, #fcece9 0%, #fff 100%);
+        .profile-pic {
+            width: 90px;
+            height: 90px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            border: 4px solid rgba(255,255,255,0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--primary);
             font-size: 40px;
-            position: relative;
+            overflow: hidden;
         }
-        
-        .card-img-placeholder::after {
-            content: '🛍️';
+        h1 { margin: 5px 0; font-size: 1.4rem; font-weight: 700; }
+        p.tagline { margin: 0; font-size: 0.9rem; opacity: 0.9; }
+
+        /* Search Bar */
+        .search-box {
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            background: #fff;
+            z-index: 10;
+            border-bottom: 1px solid #eee;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 50px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: var(--primary);
         }
 
-        .shop-badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-muted);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(4px);
+        /* Product List */
+        .product-list {
+            padding: 10px 15px;
         }
-
-        .card-body {
-            padding: 16px;
+        .product-card {
             display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid #eee;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-
-        .product-title {
-            font-size: 15px;
+        .product-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-color: var(--primary);
+        }
+        .info {
+            flex: 1;
+            padding-right: 10px;
+        }
+        .title {
             font-weight: 600;
-            color: var(--text-main);
-            margin-bottom: 8px;
-            line-height: 1.4;
+            font-size: 0.95rem;
+            margin-bottom: 5px;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            min-height: 42px;
         }
-
-        .meta-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
         .price {
             color: var(--primary);
-            font-size: 18px;
             font-weight: 700;
+            font-size: 1.1rem;
         }
-
-        .sales {
-            font-size: 12px;
-            color: var(--text-muted);
-            background: #f3f4f6;
+        .stats {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .badge {
+            background: #fff0e8;
+            color: var(--primary);
             padding: 2px 6px;
             border-radius: 4px;
+            font-size: 0.7rem;
         }
-
-        /* COMMISSION BOX */
-        .commission-card {
-            background: #f0fdf4;
-            border: 1px dashed #86efac;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .comm-label {
-            font-size: 11px;
-            color: #166534;
-            text-transform: uppercase;
-            font-weight: 600;
-            display: block;
-        }
-
-        .comm-value {
-            font-size: 14px;
-            font-weight: 700;
-            color: #15803d;
-        }
-
-        .comm-rate {
-            background: #dcfce7;
-            color: #166534;
-            padding: 2px 6px;
-            border-radius: 10px;
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-        /* BUTTONS */
-        .btn-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: auto;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: all 0.2s;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
+        .btn-check {
+            background: var(--primary);
             color: white;
-            border: 1px solid var(--primary);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
         }
 
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-outline {
-            background-color: white;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background-color: #fff1f0;
-        }
-
-        /* LOADING & ERROR */
-        #status-msg {
+        /* Footer */
+        footer {
             text-align: center;
-            grid-column: 1 / -1;
-            padding: 40px;
-            color: var(--text-muted);
-            font-size: 16px;
+            padding: 30px;
+            font-size: 0.8rem;
+            color: #888;
+            background: #f8f9fa;
         }
     </style>
 </head>
 <body>
 
+<div class="app-container">
     <header>
-        <div class="header-container">
-            <h1>🔥 Affiliate Hub</h1>
-            <div class="search-wrapper">
-                <span class="search-icon">🔍</span>
-                <input type="text" id="search-input" placeholder="Cari nama produk, toko, atau harga...">
-            </div>
+        <div class="profile-pic">
+            <img src="https://via.placeholder.com/150/ee4d2d/FFFFFF?text=KR" alt="Kang Ruli" style="width:100%; height:100%; object-fit:cover;">
         </div>
+        <h1>Toko Kang Ruli</h1>
+        <p class="tagline">"Pilihan Jujur, Harga Akur. Dipilih pake hati."</p>
     </header>
 
-    <div class="container" id="product-grid">
-        <div id="status-msg">Memuat data produk...</div>
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Cari barang (cth: Helm, Tablet)..." onkeyup="filterProducts()">
     </div>
 
-    <script>
-        // DATA CSV (Raw String)
-        const csvRawData = `ID Produk,Nama Produk,Harga,Penjualan,Nama Toko,Komisi hingga,Komisi,Link Produk,Link Komisi Ekstra
-27408422345,Helm MLA J5 Grey Glosy SNI Untuk Pria Wanita,"109,8RB",10RB+,OCEANO HELMET,"6,5%",Rp6.588,https://shopee.co.id/product/1337935037/27408422345,https://s.shopee.co.id/9pX56uuHvt
-25589004941,COD Baru Tablet Android 13 Pad 11.6inch 5G samsung gaIaxy Tab 14 Tablet Anak Murah Keyboard gratis Samsungtablet tabletPro14,"938,0RB",1RB+,3c-Tablet PC,12%,Rp112.560,https://shopee.co.id/product/858004526/25589004941,https://s.shopee.co.id/9KaoVzwBwo
-25826460469,Goojodoq kipas GFS001 turbo 100 Gear Wind hight-speed kipas angin Digital Display kipas tangan,"133,0RB",10RB+,GOOJODOQ Official Store,"10,5%",Rp13.300,https://shopee.co.id/product/297771167/25826460469,https://s.shopee.co.id/9UuEiIvYbr
-25078439142,TV Android TV Smart 32 inch TV Digital 43 inch 4K USB/HDMI/WLAN/WIFI/Netflix/YouTube Garansi 3 tahun,"1,4JT",10RB+,EXPOSE Digital Store,"10,5%",Rp136.490,https://shopee.co.id/product/1223030402/25078439142,https://s.shopee.co.id/AKTLhpsNv2
-28506779117,"ZHYO 1200Mbps dual-band 2.4G, penguat sinyal WiFi penguat router, repeater, plug and play, 4 antena eksternal, sinyal penetrasi dinding kuat dan stabil","78,9RB",10RB+,ZHYO Official Store,"15,5%",Rp11.835,https://shopee.co.id/product/1261526038/28506779117,https://s.shopee.co.id/AUmlu8rka5
-3737308832,Susu Kambing Rasa Original 1000gr,"60,0RB",10RB+,Grosir Susu Kambing Etawa 7on7,"4,5%",Rp2.400,https://shopee.co.id/product/42349282/3737308832,https://s.shopee.co.id/9zqVJDteb0
-29388575456,Makita 9980VF Impact Driver 2 Baterai 3 Mode,"305,0RB",1RB+,TOYA Auto & Tools Store,"6,5%",Rp18.300,https://shopee.co.id/product/1581378805/29388575456,https://s.shopee.co.id/AA9vVWt1G3
-28760031872,(PART 1) Celosia Top V-Neck Long Sleeve - #108,"37,1RB",10RB+,Judite,"13,5%",Rp4.827,https://shopee.co.id/product/776111686/28760031872,https://s.shopee.co.id/5fhW9GA9OC
-25133111634,Makita 9980VF Bor Listrik 2 Baterai 10mm Hemat Energi,"282,0RB",10RB+,TOYA Home & Living,"11,5%",Rp31.015,https://shopee.co.id/product/1096888744/25133111634,https://s.shopee.co.id/5q0wLZ9W3F
-20084632171,ANGOLA Lemari Pakaian Anak 4 5 Tingkat C70-C71 Tempat Penyimpanan Mainan/Snack/Baju Serbaguna,"66,0RB",10RB+,Ngola Official Store,"11,5%",Rp7.260,https://shopee.co.id/product/166819866/20084632171,https://s.shopee.co.id/5L4fkeBQ4A
-24764077724,Ecosen Smart Battery Charger 12V/24V LCD EU Plug,"98,0RB",10RB+,ECOSEN Power Tool Shop ID,"11,5%",Rp10.780,https://shopee.co.id/product/1012329980/24764077724,https://s.shopee.co.id/5VO5wxAmjD
-24379349677,CELANA Sport DewasaTerbaru AM/Jumbo/Pria Dewasa /Futsal/Badminton/Voli/Lari/COD/Nyaman dipakai/Unisex/BanyakPilihanWarna,"14,5RB",10RB+,Erla Sport,"11,5%",Rp1.595,https://shopee.co.id/product/1218741967/24379349677,https://s.shopee.co.id/6KxCwU7c2O
-42423463515,GN-831 Flatshoes Jelly Wanita Import Slop Flat Matte Bunga AntiSlip Fashion Balerina Terbaru,"36,0RB",7RB+,Gudang No.5,"11,5%",Rp3.956,https://shopee.co.id/product/853825487/42423463515,https://s.shopee.co.id/6VGd8n6yhR
-24669353328,Mesin Obeng Listrik Bor Cordless Tanpa Kabel Satu Set Koper,"70,7RB",10RB+,Reka Outlet,11%,Rp7.778,https://shopee.co.id/product/273132234/24669353328,https://s.shopee.co.id/60KMXs8siM
-28510676186,YG300 Proyektor Mini Portable Hp Android 4K Full HDMI Led Mini Proyektor TV Mini Home Theater Dukungan Mirroring Ponsel Dan Presentasi Menonton Film Mini Projector,"209,0RB",3RB+,Giaudio,"10,5%",Rp20.900,https://shopee.co.id/product/1190810430/28510676186,https://s.shopee.co.id/6AdmkB8FNP
-25124082137,Distropas.ID Paket 1 Get 3 Polo Shirt Pria Premium,"76,1RB",10RB+,Distropas.id,"10,5%",Rp7.611,https://shopee.co.id/product/411851571/25124082137,https://s.shopee.co.id/70Ctji54ga
-29774558460,Rok Canda Tutu Kekinian Korean Style Wanita,"33,6RB",10RB+,Thalhah Busana,"10,5%",Rp3.355,https://shopee.co.id/product/726182899/29774558460,https://s.shopee.co.id/7AWJw14RLd
-29210558618,Animasi Mata Running Text Terbaru Panel RGB Dinamis,"564,0RB",736,Led Art Modification,"9,5%",Rp50.760,https://shopee.co.id/product/251010381/29210558618,https://s.shopee.co.id/6fa3L66LMY
-26374925302,Celana Panjang Wanita Loose High Waist Jeans Premium - Korean Stayle Jeans Baggy Loose Oversize,"57,0RB",10RB+,Taqiz.id,"9,5%",Rp5.130,https://shopee.co.id/product/1404158930/26374925302,https://s.shopee.co.id/6ptTXP5i1b
-25751146593,DRACCO Sarung mobil premium 4 layer waterproof tebal bonus tas simpan car cover mobil,"600,0RB",10RB+,Dracco Official Shop,"9,5%",Rp54.000,https://shopee.co.id/product/801408387/25751146593,https://s.shopee.co.id/7fSaWw2XKm
-28562865265,ZPER Cordless Drill Set 124in1 Brushless,"89,0RB",872,ZPER TOOLS,"8,5%",Rp7.120,https://shopee.co.id/product/1285967239/28562865265,https://s.shopee.co.id/7pm0jF1tzp
-23756575350,"Biled Turbo SE V2 2.5"" 60W Original IP68","490,0RB",5RB+,AvizoneLight,"8,5%",Rp39.204,https://shopee.co.id/product/72079737/23756575350,https://s.shopee.co.id/7Kpk8K3o0k
-24129261398,FULL BODY TRAUMA / NURSING PHANTOM MANIKIN / PERAWATAN LUKA / ALAT PERAGA,"6,2JT",7,Ads Gudang Manikin,"8,5%",Rp496.000,https://shopee.co.id/product/279792368/24129261398,https://s.shopee.co.id/7V9AKd3Afn
-14826974778,Ciput Antem Mika Pet Marsya Bahan Spandek,"5,9RB",10RB+,DEFA_COLLECTION,"7,5%",Rp412,https://shopee.co.id/product/94121753/14826974778,https://s.shopee.co.id/30gkyMKInw
-12324151509,Plat Nomor Motor Akrilik Timbul Anti Karat Original,"71,9RB",10RB+,IB.art,"7,5%",Rp5.033,https://shopee.co.id/product/77648994/12324151509,https://s.shopee.co.id/3B0BAfJfSz
-26019147147,Charger Aki Motor Mobil 12V/24V 1200A Otomatis,"98,0RB",10RB+,MODAO Store,"8,5%",Rp7.839,https://shopee.co.id/product/1374820181/26019147147,https://s.shopee.co.id/2g3uZkLZTu
-28309024821,Yooyi Baju Tidur Wanita Katun Adem Motif Lucu,"49,9RB",10RB+,Yooyi Official Shop,"7,5%",Rp3.493,https://shopee.co.id/product/892935463/28309024821,https://s.shopee.co.id/2qNKm3Kw8x
-26135880759,Civago Mug Kopi Stainless Steel Anti Bocor,"179,0RB",10RB+,CIVAGO,"16,5%",Rp28.640,https://shopee.co.id/product/1262322211/26135880759,https://s.shopee.co.id/3fwRlaHlS8
-41926608104,RAJA KARPET - Selimut Bulu Motif Aesthetic Ukuran 115x180cm Selimut Bulu Lembut Motif Estetik,"26,4RB",2RB+,Raja Karpet Indonesia Official Store,"11,5%",Rp2.900,https://shopee.co.id/product/1086205725/41926608104,https://s.shopee.co.id/3qFrxtH87B
-41776769715,[SPECIAL CECE FANCY] Tifale Paket Como BBQ 2IN1 Kompor Portable Pemanggang,"169,0RB",472,Tifale Official Store,"11,5%",Rp18.590,https://shopee.co.id/product/753427958/41776769715,https://s.shopee.co.id/3LJbMyJ286
-47601892927,Po 1501-1600 MadameMalla Dress Po An,"116,0RB",200,Missolla_retail,"4,5%",Rp4.640,https://shopee.co.id/product/177205645/47601892927,https://s.shopee.co.id/3Vd1ZHIOn9
-29824565901,Civago Mug Kopi Stainless Steel Vakum Anti Bocor,"129,0RB",10RB+,CIVAGO,"16,5%",Rp20.640,https://shopee.co.id/product/1262322211/29824565901,https://s.shopee.co.id/4LC8YoFE6K
-47650951359,Fashion Elasso id  2 D 07.12,"66,0RB",6RB+,ELASSO TOKO,"6,5%",Rp3.960,https://shopee.co.id/product/1662178165/47650951359,https://s.shopee.co.id/4VVYl7EalN
-54202305639,PAKET COMBO TAHUN BARU / KOMPOR PORTABEL DENGAN PEMANGGANG / BBQ GRILL / KOMPOR PORTABEL,"148,5RB",519,claire_co,"16,5%",Rp23.760,https://shopee.co.id/product/399955037/54202305639,https://s.shopee.co.id/40ZIACGUmI
-44170305016,Ellena Dress Gamis Rayon Adem Nyaman Bumil Busui,"124,9RB",7RB+,Irmalaila Store,"7,5%",Rp8.743,https://shopee.co.id/product/169724769/44170305016,https://s.shopee.co.id/4AsiMVFrRL
-45850990925,Khalifah Sarimbit Lebaran Gamis Koko Premium,"78,0RB",2,casaklamby,"1,5%",Rp780,https://shopee.co.id/product/1251526900/45850990925,https://s.shopee.co.id/50RpM2CgkW
-26286200289,[Outdoor] ecentio tumbler Stainless olahraga Vacuum 900ml navy briu/pink/beige/ungu outdoor sport lari Portable Tetap dingin selama 24 JAM Thermos Botol minum besar,"145,0RB",10RB+,ecentio Official Shop,"9,5%",Rp13.050,https://shopee.co.id/product/168272721/26286200289,https://s.shopee.co.id/5AlFYLC3PZ
-42100638248,JAS HUJAN HOODIE PRIA WANITA TERBARU DARI DAREL FAHRI,"66,0RB",10RB+,Darelfahri.Shop,"13,5%",Rp8.580,https://shopee.co.id/product/267063763/42100638248,https://s.shopee.co.id/4foyxQDxQU
-48751529949,Po 1401-1500 MadameMalla Dress Po An,"95,0RB",1RB+,Missolla_retail,"4,5%",Rp3.800,https://shopee.co.id/product/177205645/48751529949,https://s.shopee.co.id/4q8P9jDK5X
-14186493354,COOGER Alat Pel Lantai New White Spray Mop Automatic Water Tank Alat Pel Semprot Dengan Tangki Air,"79,9RB",10RB+,COOGER Official Shop,"8,5%",Rp6.392,https://shopee.co.id/product/190374351/14186493354,https://s.shopee.co.id/LfznSUSDg
-44274083670,[Kak Lila] Pero Granite Knife Set of 2 Super Sharp / Set Pisau Dapur 2pcs Serba Guna Tajam dan Anti LengketPero Granite Knife Set of 2 Super Sharp / Set Pisau Dapur 2pcs Serba Guna Tajam dan Anti Lengket,"99,0RB",10RB+,Pero Indonesia,"1,5%",Rp990,https://shopee.co.id/product/84164586/44274083670,https://s.shopee.co.id/VzPzlTosj
-44550874756,Missolla Mukena Katun Rayon Adem Travel Friendly,"59,0RB",2RB+,Missolla_retail,"4,5%",Rp2.360,https://shopee.co.id/product/177205645/44550874756,https://s.shopee.co.id/139OqVite
-50501510128,Po 800-900 Madamemalla Dress Po An,"110,0RB",308,Missolla_retail,"4,5%",Rp4.400,https://shopee.co.id/product/177205645/50501510128,https://s.shopee.co.id/BMZb9V5Yh
-29085850472,MIXIO GS-08 High-speed Portable Handheld Fan 4400MAH Mini kipas Strong Wind 100 Gear Wind Speed kipas angin Digital Display Adjustable Turbo kipas tangan untuk olahraga luar ruangan dan pendinginan cepat 17000Rpm,"288,0RB",10RB+,MIXIO Official Store,"6,5%",Rp17.280,https://shopee.co.id/product/366300546/29085850472,https://s.shopee.co.id/10vgagRurs
-41753934035,Best - Wallpaper Stiker Dinding Tebal 2.5MM / Ukuran 120x280cm wallpaper dinding marble motif panel,"74,1RB",10RB+,Best Wallpaper ID,"11,5%",Rp8.151,https://shopee.co.id/product/1086317959/41753934035,https://s.shopee.co.id/1BF6mzRHWv
-53001248705,SEPATU AJAN SHOP LIVE,"295,8RB",10RB+,Ajan Shop 2,"2,5%",Rp5.916,https://shopee.co.id/product/94933405/53001248705,https://s.shopee.co.id/gIqC4TBXq
-41125300666,DAISY 3 SEGITIGA- Jilbab Segitiga Instan Katbol Daisy Gesper Ori Alsha Hijab,"37,9RB",10RB+,Apregio Shop,"11,5%",Rp4.169,https://shopee.co.id/product/3942911/41125300666,https://s.shopee.co.id/qcGONSYCt
-28171019771,Sanma Cobek Alumunium Anti Lengket 20 Cm,"40,9RB",10RB+,Sanmahouse,"12,5%",Rp4.902,https://shopee.co.id/product/190897011/28171019771,https://s.shopee.co.id/1gBNNuPNW4
-42009396162,(HF) LOKAL Karpet Polyester Jumbo UK 160x210CM Motif Eropa Aesthetic Anti Slip HIGH QUALITY,"192,6RB",10RB+,Happy Family Official Shop,"4,5%",Rp7.704,https://shopee.co.id/product/611008241/42009396162,https://s.shopee.co.id/1qUnaDOkB7
-26065447670,MAKUKU COMFORT FIT SUPER JUMBO [L60 / M66 / XL50] (KHUSUS LIVE),"60,0RB",10RB+,CheryLin Susu,"2,5%",Rp1.200,https://shopee.co.id/product/82255412/26065447670,https://s.shopee.co.id/1LYWzIQeC2
-44651524974,PO 1301-1400 MISSOLLA DRESS PO AN,"103,0RB",391,Missolla_retail,"4,5%",Rp4.120,https://shopee.co.id/product/177205645/44651524974,https://s.shopee.co.id/1VrxBbQ0r5
-40554373582,Lover.fashion 3Pcs Setelan Wanita Jumbo Crepe,"123,0RB",10RB+,Lover.fashion,"6,5%",Rp7.380,https://shopee.co.id/product/182515340/40554373582,https://s.shopee.co.id/2LR4B8MqAG
-27640586847,PROMO Hemat 3Pcs Bra Seamless Wanita M-XXL,"108,8RB",10RB+,Honey Wear Official Shop,"4,5%",Rp4.352,https://shopee.co.id/product/423194346/27640586847,https://s.shopee.co.id/2VkUNRMCpJ
-29955981031,BABY HAPPY PANTS PAKET 4 BALL / 1 KARTON M32 L28 XL26 XXL24 S38+2 PPKS,"173,8RB",10RB+,ONLINE SUSU MURAH,3%,Rp5.214,https://shopee.co.id/product/3656690/29955981031,https://s.shopee.co.id/20oDmWO6qE
-57400374155,Hijab Segiempat Katun Voal Venni Hijab Store,"126,0RB",4RB+,VENNI HIJAB STORE,"5,5%",Rp6.300,https://shopee.co.id/product/47747566/57400374155,https://s.shopee.co.id/2B7dypNTVH
-29613967350,Nuvo Family Sabun Mandi Cair Kuning Fresh Protect Pouch 800 Ml x5,"195,0RB",10RB+,Wings Official Shop,"11,5%",Rp21.450,https://shopee.co.id/product/64474495/29613967350,https://s.shopee.co.id/8V1hWSzMeW
-43962381637,Glad2Glow 2-in-1 Perfect Pair Cushion Powder - Makeup Waterproof 19Gr,"130,0RB",10RB+,Guardian Official Shop,"3,5%",Rp3.900,https://shopee.co.id/product/186214521/43962381637,https://s.shopee.co.id/8KiHK9zzzV
-29436991673,TEBUS SATUAN 6 DESEMBER (suci) SG FIRDA COLLECTION,"191,0RB",10RB+,Firda Collection,"1,5%",Rp1.910,https://shopee.co.id/product/13353258/29436991673,https://s.shopee.co.id/8AOr7r0dKU
-56002396751,[KODE AD GAMIS MUSLIM TUM] Spesial 12.12 Hot Sale! Gamis Canio Baraya & Shakira Premium,"200,0RB",827,TUM Gamis,2%,Rp4.000,https://shopee.co.id/product/1683579482/56002396751,https://s.shopee.co.id/805QvY1GfT
-24644928499,Jibjib Bra Wanita Renda Jumbo Size 36-44 Tanpa Kawat,"22,9RB",998,Jib Jib Store,"10,5%",Rp2.290,https://shopee.co.id/product/1432166313/24644928499,https://s.shopee.co.id/9AHOJgwpIi
-52400104492,Rak Troli 4 Susun Plastik Kokoh Anti Bakteri,"35,6RB",10RB+,La_laku168,"13,5%",Rp4.628,https://shopee.co.id/product/1660667904/52400104492,https://s.shopee.co.id/8zxy7NxSdh
-1835009883,Maybelline Superstay Matte Ink Liquid Long Lasting Waterproof Matte Lipstick Lipcream Make Up Transferproof Tahan 16 Jam Vinyl Ink,"89,1RB",10RB+,Maybelline Indonesia Official Store,"6,5%",Rp5.346,https://shopee.co.id/product/62582411/1835009883,https://s.shopee.co.id/8peXv4y5yg
-16299310964,Velle Gelas Tumbler Aesthetic Anti Bocor 600/800ML,"19,6RB",8RB+,Velle Official Store,"11,5%",Rp2.156,https://shopee.co.id/product/1050583850/16299310964,https://s.shopee.co.id/8fL7ilyjJf
-27860904873,Blender Daging Stainless Chopper Penggiling Daging Serbaguna,"61,8RB",10RB+,PUSAT ELECTRONIC,"6,5%",Rp3.710,https://shopee.co.id/product/1347107824/27860904873,https://s.shopee.co.id/9pX56uuHwu
-44018159011,HUES.ID BH big size  Push Up pakaian dalam Tanpa kawat Bra Seamless 9039,"21,5RB",3RB+,HUES.id,"11,5%",Rp2.365,https://shopee.co.id/product/43008479/44018159011,https://s.shopee.co.id/9fDeubuvHt
-26284709573,BAJU/GAMIS/ATASAN 6 DESEMBER PG (Suci) FIRDA COLLECTION,"206,0RB",10RB+,Firda Collection,"1,5%",Rp2.060,https://shopee.co.id/product/13353258/26284709573,https://s.shopee.co.id/9UuEiIvYcs
-54150123523,"Flashsale Sprei saja Ukuran 160x200, 180x200 Tinggi 20cm motif random","36,0RB",2RB+,ria grosir99,"8,5%",Rp2.880,https://shopee.co.id/product/405371631/54150123523,https://s.shopee.co.id/9KaoVzwBxr
-40372874882,Kaos Busui Wanita Katun Adem Lembut Tangan Panjang,"112,0RB",6RB+,Arto Busana Bekasi,"11,5%",Rp12.320,https://shopee.co.id/product/510919472/40372874882,https://s.shopee.co.id/AUmlu8rkb6
-57152327364,JIBJIB (Spesial Live Zakiya) Bh Wanita Motif Garis Jumbo Size 36-44 Cup 3/4B Bra Busa Tipis Tanpa Kawat Pakaian Dalam Perempuan THB004,"22,9RB",1RB+,Jib Jib Store,"10,5%",Rp2.290,https://shopee.co.id/product/1432166313/57152327364,https://s.shopee.co.id/AKTLhpsNw5
-28170031044,TEBUS MURAH BAJU NFASHION 7 DESEMBER SIANGG,"80,0RB",10RB+,NFashion_official,"1,5%",Rp800,https://shopee.co.id/product/526899373/28170031044,https://s.shopee.co.id/AA9vVWt1H4
-53401774043,Selimut Bulu Lembut Microfiber Ratu Sprei 115x180cm,"26,4RB",10RB+,Ratu Sprei Indonesia,"11,5%",Rp2.900,https://shopee.co.id/product/1088320565/53401774043,https://s.shopee.co.id/9zqVJDtec3
-22123154572,Vaseline Healthy Bright UV Brightening Lotion 400ml Triplepack,"142,4RB",10RB+,Unilever Beauty Shop,"6,5%",Rp8.544,https://shopee.co.id/product/932470899/22123154572,https://s.shopee.co.id/5q0wLZ9W4G
-23270262575,Rak toilet rak serbaguna square rak dapur rak susun 4 tingkat dengan roda SQ,"25,5RB",10RB+,ekaisi store,"9,5%",Rp2.295,https://shopee.co.id/product/175667386/23270262575,https://s.shopee.co.id/5fhW9GA9PF
-28839776631,"(10 Pack) TISU KING 360 Helai Tidak Embos, 100 % Virgin Pulp Isi 10 Pack","33,0RB",10RB+,Larismarket88,"1,5%",Rp330,https://shopee.co.id/product/16190837/28839776631,https://s.shopee.co.id/5VO5wxAmkE
-25650891129,Jims Honey - Pevita Bag - Tas Sling Bag Wanita,"139,0RB",6RB+,Jims Honey Official Shop,"11,5%",Rp15.290,https://shopee.co.id/product/17074378/25650891129,https://s.shopee.co.id/5L4fkeBQ5D
-43063095118,"POCO C71 (4+4GB/128GB) Performa Cadas | Layar Cadas 6.88"" 120Hz | Baterai Cadas 5200mAh | Expansi RAM hingga 8GB dan storage 128GB","1,1JT",10RB+,Xiaomi Official Store,1%,Rp10.990,https://shopee.co.id/product/51925611/43063095118,https://s.shopee.co.id/6VGd8n6yiS
-24086963711,Nuvo Family Sabun Mandi Cair Merah Pouch 800 ml x5,"195,0RB",10RB+,Wings Official Shop,"11,5%",Rp21.450,https://shopee.co.id/product/64474495/24086963711,https://s.shopee.co.id/6KxCwU7c3R
-44460863259,Exclusive Masesa_PAKET HEMAT CD 6 PCS Celana Dalam Wanita JIASHINI Renda Motif Random 8202,"57,8RB",10RB+,Honey Wear Official Shop,"4,5%",Rp2.312,https://shopee.co.id/product/423194346/44460863259,https://s.shopee.co.id/6AdmkB8FOQ
-20994505064,Mukena Traveling 2in1 Katun Micro Premium,"47,2RB",10RB+,Adiba muslim Collection,"13,5%",Rp6.140,https://shopee.co.id/product/491357860/20994505064,https://s.shopee.co.id/60KMXs8sjP
-49102332961,JTKIDS SETELAN ANAK LAKI LAKI GAVIN SNI,"21,5RB",558,jtkids,"4,5%",Rp860,https://shopee.co.id/product/150922635/49102332961,https://s.shopee.co.id/7AWJw14RMe
-28763768652,Nuvo Family Sabun Mandi Cair Mild Protect antibakterial Biru Pouch 800 ml x5,"195,0RB",10RB+,Wings Official Shop,"11,5%",Rp21.450,https://shopee.co.id/product/64474495/28763768652,https://s.shopee.co.id/70Ctji54hd
-23078293092,"Cadbury Dairy Milk Chunks Sharebag 81g (Paket isi 5), Cokelat Susu","122,5RB",10RB+,"Oreo, Cadbury & Kraft Official","11,5%",Rp13.475,https://shopee.co.id/product/20090785/23078293092,https://s.shopee.co.id/6ptTXP5i2c
-40126100677,Alfredkids Setelan Baju Anak Baseball Katun S-XXL,"25,0RB",1RB+,AlfredKids,"11,5%",Rp2.750,https://shopee.co.id/product/61657934/40126100677,https://s.shopee.co.id/6fa3L66LNb
-18494121494,Rak Troli Plastik 3/4 Susun Beroda Serbaguna,"28,0RB",10RB+,Kadula,"6,5%",Rp1.680,https://shopee.co.id/product/1024641100/18494121494,https://s.shopee.co.id/7pm0jF1u0q
-43952623150,Soklin Softergent Bubuk Kemasan 5000 Karton (Isi 24) 215Gr,"111,2RB",10RB+,Royal.olshop,"2,5%",Rp2.224,https://shopee.co.id/product/38704004/43952623150,https://s.shopee.co.id/7fSaWw2XLp
-28963771248,Giv Beauty Sabun Mandi Cair Ungu Pouch 800 ml x5,"195,0RB",10RB+,Wings Official Shop,"11,5%",Rp21.450,https://shopee.co.id/product/64474495/28963771248,https://s.shopee.co.id/7V9AKd3Ago
-27533637581,JIMS HONEY - Tas Selempang Wanita Shoulder Bag Wanita Nikita Bag,"140,0RB",4RB+,Jims Honey Official Shop,"11,5%",Rp15.400,https://shopee.co.id/product/17074378/27533637581,https://s.shopee.co.id/7Kpk8K3o1n`;
+    <div class="product-list" id="productList">
+        </div>
 
-        // PARSE CSV DENGAN REGEX (Aman untuk koma dalam kutip)
-        function csvToArray(text) {
-            let p = '', row = [''], i = 0, r = 0, s = !0, l;
-            for (l of text) {
-                if ('"' === l) {
-                    if (s && l === p) row[i] += l;
-                    s = !s;
-                } else if (',' === l && s) l = row[++i] = '';
-                else if ('\n' === l && s) {
-                    if ('\r' === p) row[i] = row[i].slice(0, -1);
-                    row = result[++r] = ['']; i = 0;
-                } else row[i] += l;
-                p = l;
-            }
-            return result;
-        }
-        
-        // Inisialisasi result array
-        let result = [[]];
+    <footer>
+        &copy; 2025 Toko Kang Ruli.<br>Teman Belanja Terpercaya.
+    </footer>
+</div>
 
-        // LOAD DATA
-        document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('product-grid');
-            const searchInput = document.getElementById('search-input');
-            const statusMsg = document.getElementById('status-msg');
+<script>
+    // Data Produk (Hanya Nama, Harga, Terjual, dan Link Affiliate)
+    // Tidak ada data komisi di sini.
+    const products = [
+        {name: "Helm MLA J5 Grey Glosy SNI", price: "109,8RB", sold: "10RB+", link: "https://s.shopee.co.id/9pX56uuHvt"},
+        {name: "Tablet Android 13 Pad 11.6inch 5G Samsung Galaxy Style", price: "938,0RB", sold: "1RB+", link: "https://s.shopee.co.id/9KaoVzwBwo"},
+        {name: "Goojodoq Kipas GFS001 Turbo High-Speed", price: "133,0RB", sold: "10RB+", link: "https://s.shopee.co.id/9UuEiIvYbr"},
+        {name: "TV Android Smart 32 inch - 43 inch 4K Garansi 3 Tahun", price: "1,4JT", sold: "10RB+", link: "https://s.shopee.co.id/AKTLhpsNv2"},
+        {name: "ZHYO Penguat Sinyal WiFi 1200Mbps 4 Antena", price: "78,9RB", sold: "10RB+", link: "https://s.shopee.co.id/AUmlu8rka5"},
+        {name: "Susu Kambing Rasa Original 1000gr", price: "60,0RB", sold: "10RB+", link: "https://s.shopee.co.id/9zqVJDteb0"},
+        {name: "Makita 9980VF Impact Driver 2 Baterai 3 Mode", price: "305,0RB", sold: "1RB+", link: "https://s.shopee.co.id/AA9vVWt1G3"},
+        {name: "Celosia Top V-Neck Long Sleeve - #108", price: "37,1RB", sold: "10RB+", link: "https://s.shopee.co.id/5fhW9GA9OC"},
+        {name: "Makita 9980VF Bor Listrik 2 Baterai 10mm", price: "282,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5q0wLZ9W3F"},
+        {name: "ANGOLA Lemari Pakaian Anak 4-5 Tingkat", price: "66,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5L4fkeBQ4A"},
+        {name: "Ecosen Smart Battery Charger 12V/24V LCD", price: "98,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5VO5wxAmjD"},
+        {name: "Celana Sport Dewasa Pria/Wanita Murah", price: "14,5RB", sold: "10RB+", link: "https://s.shopee.co.id/6KxCwU7c2O"},
+        {name: "Flatshoes Jelly Wanita Import AntiSlip", price: "36,0RB", sold: "7RB+", link: "https://s.shopee.co.id/6VGd8n6yhR"},
+        {name: "Mesin Obeng Listrik Bor Cordless Set Koper", price: "70,7RB", sold: "10RB+", link: "https://s.shopee.co.id/60KMXs8siM"},
+        {name: "YG300 Proyektor Mini Portable Android 4K", price: "209,0RB", sold: "3RB+", link: "https://s.shopee.co.id/6AdmkB8FNP"},
+        {name: "Paket 1 Get 3 Polo Shirt Pria Premium", price: "76,1RB", sold: "10RB+", link: "https://s.shopee.co.id/70Ctji54ga"},
+        {name: "Rok Canda Tutu Kekinian Korean Style", price: "33,6RB", sold: "10RB+", link: "https://s.shopee.co.id/7AWJw14RLd"},
+        {name: "Animasi Mata Running Text RGB Dinamis", price: "564,0RB", sold: "736", link: "https://s.shopee.co.id/6fa3L66LMY"},
+        {name: "Celana Jeans Wanita High Waist Loose Premium", price: "57,0RB", sold: "10RB+", link: "https://s.shopee.co.id/6ptTXP5i1b"},
+        {name: "DRACCO Sarung Mobil Premium 4 Layer Waterproof", price: "600,0RB", sold: "10RB+", link: "https://s.shopee.co.id/7fSaWw2XKm"},
+        {name: "ZPER Cordless Drill Set 124in1 Brushless", price: "89,0RB", sold: "872", link: "https://s.shopee.co.id/7pm0jF1tzp"},
+        {name: "Biled Turbo SE V2 2.5 inch 60W Original", price: "490,0RB", sold: "5RB+", link: "https://s.shopee.co.id/7Kpk8K3o0k"},
+        {name: "Phantom Manikin Full Body Trauma Nursing", price: "6,2JT", sold: "7", link: "https://s.shopee.co.id/7V9AKd3Afn"},
+        {name: "Ciput Antem Mika Pet Marsya Spandek", price: "5,9RB", sold: "10RB+", link: "https://s.shopee.co.id/30gkyMKInw"},
+        {name: "Plat Nomor Motor Akrilik Timbul Anti Karat", price: "71,9RB", sold: "10RB+", link: "https://s.shopee.co.id/3B0BAfJfSz"},
+        {name: "Charger Aki Motor Mobil 12V/24V 1200A Otomatis", price: "98,0RB", sold: "10RB+", link: "https://s.shopee.co.id/2g3uZkLZTu"},
+        {name: "Yooyi Baju Tidur Wanita Katun Motif Lucu", price: "49,9RB", sold: "10RB+", link: "https://s.shopee.co.id/2qNKm3Kw8x"},
+        {name: "Civago Mug Kopi Stainless Steel Anti Bocor", price: "179,0RB", sold: "10RB+", link: "https://s.shopee.co.id/3fwRlaHlS8"},
+        {name: "Selimut Bulu Motif Aesthetic 115x180cm", price: "26,4RB", sold: "2RB+", link: "https://s.shopee.co.id/3qFrxtH87B"},
+        {name: "Tifale Paket Kompor Portable + Pemanggang BBQ", price: "169,0RB", sold: "472", link: "https://s.shopee.co.id/3LJbMyJ286"},
+        {name: "PO MadameMalla Dress", price: "116,0RB", sold: "200", link: "https://s.shopee.co.id/3Vd1ZHIOn9"},
+        {name: "Civago Mug Kopi Stainless Steel Vakum", price: "129,0RB", sold: "10RB+", link: "https://s.shopee.co.id/4LC8YoFE6K"},
+        {name: "Fashion Elasso id 2 D 07.12", price: "66,0RB", sold: "6RB+", link: "https://s.shopee.co.id/4VVYl7EalN"},
+        {name: "Paket Combo Tahun Baru Kompor + Grill", price: "148,5RB", sold: "519", link: "https://s.shopee.co.id/40ZIACGUmI"},
+        {name: "Ellena Dress Gamis Rayon Adem", price: "124,9RB", sold: "7RB+", link: "https://s.shopee.co.id/4AsiMVFrRL"},
+        {name: "Khalifah Sarimbit Lebaran Gamis Koko", price: "78,0RB", sold: "2", link: "https://s.shopee.co.id/50RpM2CgkW"},
+        {name: "Ecentio Tumbler Stainless 900ml Tahan 24 Jam", price: "145,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5AlFYLC3PZ"},
+        {name: "Jas Hujan Hoodie Pria Wanita Darel Fahri", price: "66,0RB", sold: "10RB+", link: "https://s.shopee.co.id/4foyxQDxQU"},
+        {name: "PO MadameMalla Dress Batch 2", price: "95,0RB", sold: "1RB+", link: "https://s.shopee.co.id/4q8P9jDK5X"},
+        {name: "COOGER Alat Pel Lantai Spray Mop", price: "79,9RB", sold: "10RB+", link: "https://s.shopee.co.id/LfznSUSDg"},
+        {name: "Pero Granite Knife Set 2pcs Tajam", price: "99,0RB", sold: "10RB+", link: "https://s.shopee.co.id/VzPzlTosj"},
+        {name: "Missolla Mukena Katun Rayon Travel Friendly", price: "59,0RB", sold: "2RB+", link: "https://s.shopee.co.id/139OqVite"},
+        {name: "PO MadameMalla Dress Batch 3", price: "110,0RB", sold: "308", link: "https://s.shopee.co.id/BMZb9V5Yh"},
+        {name: "MIXIO Kipas Portable High Speed 100 Gear", price: "288,0RB", sold: "10RB+", link: "https://s.shopee.co.id/10vgagRurs"},
+        {name: "Wallpaper Stiker Dinding Tebal Marble", price: "74,1RB", sold: "10RB+", link: "https://s.shopee.co.id/1BF6mzRHWv"},
+        {name: "Sepatu Ajan Shop Live", price: "295,8RB", sold: "10RB+", link: "https://s.shopee.co.id/gIqC4TBXq"},
+        {name: "Jilbab Segitiga Instan Katbol Daisy", price: "37,9RB", sold: "10RB+", link: "https://s.shopee.co.id/qcGONSYCt"},
+        {name: "Sanma Cobek Alumunium Anti Lengket 20cm", price: "40,9RB", sold: "10RB+", link: "https://s.shopee.co.id/1gBNNuPNW4"},
+        {name: "Karpet Polyester Jumbo Motif Eropa Anti Slip", price: "192,6RB", sold: "10RB+", link: "https://s.shopee.co.id/1qUnaDOkB7"},
+        {name: "MAKUKU Comfort Fit Super Jumbo (Live)", price: "60,0RB", sold: "10RB+", link: "https://s.shopee.co.id/1LYWzIQeC2"},
+        {name: "PO Missolla Dress", price: "103,0RB", sold: "391", link: "https://s.shopee.co.id/1VrxBbQ0r5"},
+        {name: "Setelan Wanita Jumbo Crepe 3Pcs", price: "123,0RB", sold: "10RB+", link: "https://s.shopee.co.id/2LR4B8MqAG"},
+        {name: "Promo Hemat 3Pcs Bra Seamless M-XXL", price: "108,8RB", sold: "10RB+", link: "https://s.shopee.co.id/2VkUNRMCpJ"},
+        {name: "Baby Happy Pants Paket 4 Ball / Karton", price: "173,8RB", sold: "10RB+", link: "https://s.shopee.co.id/20oDmWO6qE"},
+        {name: "Hijab Segiempat Katun Voal", price: "126,0RB", sold: "4RB+", link: "https://s.shopee.co.id/2B7dypNTVH"},
+        {name: "Nuvo Family Sabun Cair Kuning 800ml x5", price: "195,0RB", sold: "10RB+", link: "https://s.shopee.co.id/8V1hWSzMeW"},
+        {name: "Glad2Glow 2-in-1 Cushion Powder", price: "130,0RB", sold: "10RB+", link: "https://s.shopee.co.id/8KiHK9zzzV"},
+        {name: "Tebus Satuan SG Firda Collection", price: "191,0RB", sold: "10RB+", link: "https://s.shopee.co.id/8AOr7r0dKU"},
+        {name: "Gamis Canio Baraya & Shakira Premium", price: "200,0RB", sold: "827", link: "https://s.shopee.co.id/805QvY1GfT"},
+        {name: "Bra Wanita Renda Jumbo Size 36-44", price: "22,9RB", sold: "998", link: "https://s.shopee.co.id/9AHOJgwpIi"},
+        {name: "Rak Troli 4 Susun Plastik Kokoh", price: "35,6RB", sold: "10RB+", link: "https://s.shopee.co.id/8zxy7NxSdh"},
+        {name: "Maybelline Superstay Matte Ink Lipstick", price: "89,1RB", sold: "10RB+", link: "https://s.shopee.co.id/8peXv4y5yg"},
+        {name: "Velle Gelas Tumbler Aesthetic 600/800ml", price: "19,6RB", sold: "8RB+", link: "https://s.shopee.co.id/8fL7ilyjJf"},
+        {name: "Blender Daging Stainless Chopper Serbaguna", price: "61,8RB", sold: "10RB+", link: "https://s.shopee.co.id/9pX56uuHwu"},
+        {name: "HUES BH Big Size Push Up Tanpa Kawat", price: "21,5RB", sold: "3RB+", link: "https://s.shopee.co.id/9fDeubuvHt"},
+        {name: "Baju/Gamis Firda Collection", price: "206,0RB", sold: "10RB+", link: "https://s.shopee.co.id/9UuEiIvYcs"},
+        {name: "Flashsale Sprei Saja 180x200", price: "36,0RB", sold: "2RB+", link: "https://s.shopee.co.id/9KaoVzwBxr"},
+        {name: "Kaos Busui Wanita Katun Adem", price: "112,0RB", sold: "6RB+", link: "https://s.shopee.co.id/AUmlu8rkb6"},
+        {name: "Bra Wanita Motif Garis Jumbo", price: "22,9RB", sold: "1RB+", link: "https://s.shopee.co.id/AKTLhpsNw5"},
+        {name: "Tebus Murah Baju NFashion", price: "80,0RB", sold: "10RB+", link: "https://s.shopee.co.id/AA9vVWt1H4"},
+        {name: "Selimut Bulu Microfiber Ratu Sprei", price: "26,4RB", sold: "10RB+", link: "https://s.shopee.co.id/9zqVJDtec3"},
+        {name: "Vaseline Healthy Bright Lotion 400ml Triplepack", price: "142,4RB", sold: "10RB+", link: "https://s.shopee.co.id/5q0wLZ9W4G"},
+        {name: "Rak Toilet Serbaguna 4 Tingkat", price: "25,5RB", sold: "10RB+", link: "https://s.shopee.co.id/5fhW9GA9PF"},
+        {name: "Tisu King 10 Pack 360 Helai", price: "33,0RB", sold: "10RB+", link: "https://s.shopee.co.id/5VO5wxAmkE"},
+        {name: "Jims Honey Pevita Bag Sling Bag", price: "139,0RB", sold: "6RB+", link: "https://s.shopee.co.id/5L4fkeBQ5D"},
+        {name: "POCO C71 4GB/128GB Baterai 5200mAh", price: "1,1JT", sold: "10RB+", link: "https://s.shopee.co.id/6VGd8n6yiS"},
+        {name: "Nuvo Family Sabun Cair Merah 800ml x5", price: "195,0RB", sold: "10RB+", link: "https://s.shopee.co.id/6KxCwU7c3R"},
+        {name: "Paket Hemat CD 6 Pcs Celana Dalam Wanita", price: "57,8RB", sold: "10RB+", link: "https://s.shopee.co.id/6AdmkB8FOQ"},
+        {name: "Mukena Traveling 2in1 Katun Micro", price: "47,2RB", sold: "10RB+", link: "https://s.shopee.co.id/60KMXs8sjP"},
+        {name: "JTKIDS Setelan Anak Laki Laki Gavin", price: "21,5RB", sold: "558", link: "https://s.shopee.co.id/7AWJw14RMe"},
+        {name: "Nuvo Family Sabun Cair Mild Protect 800ml x5", price: "195,0RB", sold: "10RB+", link: "https://s.shopee.co.id/70Ctji54hd"},
+        {name: "Cadbury Dairy Milk Chunks Sharebag x5", price: "122,5RB", sold: "10RB+", link: "https://s.shopee.co.id/6ptTXP5i2c"},
+        {name: "Alfredkids Setelan Baju Anak Baseball", price: "25,0RB", sold: "1RB+", link: "https://s.shopee.co.id/6fa3L66LNb"},
+        {name: "Rak Troli Plastik 3-4 Susun Beroda", price: "28,0RB", sold: "10RB+", link: "https://s.shopee.co.id/7pm0jF1u0q"},
+        {name: "SoKlin Softergent Bubuk 5000 Karton", price: "111,2RB", sold: "10RB+", link: "https://s.shopee.co.id/7fSaWw2XLp"},
+        {name: "Giv Beauty Sabun Cair Ungu 800ml x5", price: "195,0RB", sold: "10RB+", link: "https://s.shopee.co.id/7V9AKd3Ago"},
+        {name: "Jims Honey Tas Selempang Nikita Bag", price: "140,0RB", sold: "4RB+", link: "https://s.shopee.co.id/7Kpk8K3o1n"}
+    ];
 
-            // Parse Data
-            const rows = csvToArray(csvRawData);
+    const listContainer = document.getElementById('productList');
+
+    function renderProducts(data) {
+        listContainer.innerHTML = '';
+        data.forEach(item => {
+            const card = document.createElement('a');
+            card.className = 'product-card';
+            card.href = item.link; // Link ini mengarah ke Affiliate Shopee (Cuan tetap masuk ke Anda)
+            card.target = "_blank"; 
             
-            // Hapus Header dan Baris Kosong
-            const data = rows.slice(1).filter(r => r.length > 5).map(row => ({
-                id: row[0],
-                name: row[1],
-                price: row[2].replace(/"/g, ''), // Hapus kutip sisa di harga
-                sales: row[3],
-                shop: row[4],
-                commRate: row[5].replace(/"/g, ''),
-                commAmount: row[6],
-                linkProduct: row[7],
-                linkExtra: row[8]
-            }));
-
-            // Fungsi Render Kartu
-            function render(items) {
-                grid.innerHTML = '';
-                
-                if(items.length === 0) {
-                    grid.innerHTML = '<div id="status-msg">Tidak ada produk yang cocok dengan pencarian Anda.</div>';
-                    return;
-                }
-
-                items.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'card';
-                    card.innerHTML = `
-                        <div class="card-img-placeholder">
-                            <span class="shop-badge">${item.shop}</span>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="product-title" title="${item.name}">${item.name}</h3>
-                            
-                            <div class="meta-info">
-                                <div class="price">Rp ${item.price.replace('Rp','').replace(',-','')}</div>
-                                <div class="sales">${item.sales} Terjual</div>
-                            </div>
-
-                            <div class="commission-card">
-                                <div>
-                                    <span class="comm-label">Komisi Anda</span>
-                                    <div class="comm-value">${item.commAmount}</div>
-                                </div>
-                                <div class="comm-rate">${item.commRate}</div>
-                            </div>
-
-                            <div class="btn-group">
-                                <a href="${item.linkProduct}" target="_blank" class="btn btn-primary">Beli Sekarang</a>
-                                <a href="${item.linkExtra}" target="_blank" class="btn btn-outline">Link Ekstra</a>
-                            </div>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            }
-
-            // Render Awal
-            render(data);
-
-            // Fitur Search Live
-            searchInput.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                const filtered = data.filter(item => 
-                    item.name.toLowerCase().includes(term) || 
-                    item.shop.toLowerCase().includes(term) ||
-                    item.price.toLowerCase().includes(term)
-                );
-                render(filtered);
-            });
+            card.innerHTML = `
+                <div class="info">
+                    <div class="title">${item.name}</div>
+                    <div class="price">Rp ${item.price}</div>
+                    <div class="stats">
+                        <span class="badge">🔥 ${item.sold} Terjual</span>
+                    </div>
+                </div>
+                <div class="btn-check">Beli ></div>
+            `;
+            listContainer.appendChild(card);
         });
-    </script>
+    }
+
+    // Fungsi Search Filter
+    function filterProducts() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const filteredData = products.filter(item => 
+            item.name.toLowerCase().includes(filter)
+        );
+        renderProducts(filteredData);
+    }
+
+    // Render awal semua produk
+    renderProducts(products);
+
+</script>
+
 </body>
 </html>

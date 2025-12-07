@@ -8,14 +8,12 @@
         /* --- 1. SETTING UI/UX DASAR --- */
         :root {
             --primary: #ee4d2d;       /* Warna Utama (Shopee Orange) */
-            --primary-dark: #d63f22;  /* Warna Hover */
             --accent: #fff0e8;        /* Warna Background Badge */
             --bg-body: #f5f7fa;       /* Background Halaman (Abu muda) */
-            --text-main: #2d3436;     /* Warna Teks Utama (Hampir hitam) */
+            --text-main: #2d3436;     /* Warna Teks Utama */
             --text-muted: #636e72;    /* Warna Teks Sekunder */
             --white: #ffffff;
             --shadow-card: 0 4px 15px rgba(0,0,0,0.05);
-            --shadow-float: 0 10px 25px rgba(238, 77, 45, 0.15);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -32,16 +30,14 @@
         .app-container {
             max-width: 500px;
             margin: 0 auto;
-            background: var(--bg-body);
             min-height: 100vh;
-            position: relative;
         }
 
         /* --- 2. HEADER MODERN --- */
         header {
             background: linear-gradient(160deg, var(--primary), #ff8e71);
             color: var(--white);
-            padding: 40px 20px 50px; /* Padding bawah lebih besar untuk search bar */
+            padding: 40px 20px 50px;
             text-align: center;
             border-radius: 0 0 30px 30px;
             box-shadow: 0 4px 20px rgba(238, 77, 45, 0.2);
@@ -49,44 +45,28 @@
             z-index: 1;
         }
 
-        .profile-wrapper {
-            position: relative;
+        .profile-pic {
             width: 96px;
             height: 96px;
-            margin: 0 auto 12px;
-        }
-
-        .profile-pic {
-            width: 100%;
-            height: 100%;
             background: var(--white);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            margin: 0 auto 12px;
             border: 3px solid rgba(255,255,255,0.4);
             overflow: hidden;
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         }
 
-        h1 {
-            margin: 0;
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
+        .profile-pic img {
+             width: 100%; height: 100%; object-fit: cover;
         }
 
-        p.tagline {
-            margin: 5px 0 0;
-            font-size: 0.95rem;
-            opacity: 0.9;
-            font-weight: 400;
-        }
+        h1 { margin: 0; font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+        p.tagline { margin: 5px 0 0; font-size: 0.95rem; opacity: 0.9; font-weight: 400; }
 
-        /* --- 3. SEARCH BAR MELAYANG (GLASSMORPHISM) --- */
+        /* --- 3. SEARCH BAR MELAYANG --- */
         .search-container {
             padding: 0 20px;
-            margin-top: -25px; /* Menarik ke atas masuk ke header */
+            margin-top: -25px;
             position: sticky;
             top: 15px;
             z-index: 100;
@@ -101,14 +81,9 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             display: flex;
             align-items: center;
-            border: 1px solid rgba(255,255,255,0.5);
         }
 
-        .search-icon {
-            padding-left: 15px;
-            color: var(--text-muted);
-            font-size: 1.2rem;
-        }
+        .search-icon { padding-left: 15px; color: var(--text-muted); font-size: 1.2rem; }
 
         input[type="text"] {
             width: 100%;
@@ -125,7 +100,7 @@
         /* --- 4. LIST PRODUK & KARTU --- */
         .product-list {
             padding: 20px;
-            padding-bottom: 80px; /* Ruang untuk footer */
+            padding-bottom: 80px;
         }
 
         .product-card {
@@ -138,29 +113,21 @@
             border-radius: 16px;
             text-decoration: none;
             color: inherit;
-            border: 1px solid transparent;
             box-shadow: var(--shadow-card);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
         }
 
-        /* Efek Hover/Touch */
+        /* Efek Hover/Active */
         .product-card:active, .product-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            border-color: rgba(238, 77, 45, 0.3);
         }
 
-        .info {
-            flex: 1;
-            padding-right: 15px;
-        }
+        .info { flex: 1; padding-right: 15px; }
 
         .title {
             font-weight: 700;
             font-size: 1rem;
-            color: var(--text-main);
             margin-bottom: 6px;
             line-height: 1.4;
             display: -webkit-box;
@@ -169,18 +136,9 @@
             overflow: hidden;
         }
 
-        .price-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 8px;
-        }
+        .price-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
 
-        .price {
-            color: var(--primary);
-            font-weight: 800;
-            font-size: 1.15rem;
-        }
+        .price { color: var(--primary); font-weight: 800; font-size: 1.15rem; }
 
         .badge {
             background: var(--accent);
@@ -205,37 +163,21 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 10px rgba(238, 77, 45, 0.3);
-            transition: 0.2s;
             flex-shrink: 0;
         }
         
-        /* Ikon Panah di tombol */
         .btn-check svg {
-            width: 20px;
-            height: 20px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2.5;
-            stroke-linecap: round;
-            stroke-linejoin: round;
+            width: 20px; height: 20px; stroke: currentColor; stroke-width: 2.5;
+            fill: none; stroke-linecap: round; stroke-linejoin: round;
         }
 
-        /* --- 5. LOADING ANIMATION & FOOTER --- */
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: var(--text-muted);
-        }
+        /* --- 5. LOADING & FOOTER --- */
+        .loading { text-align: center; padding: 40px; color: var(--text-muted); }
         .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid var(--accent);
-            border-top: 4px solid var(--primary);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 15px;
+            width: 40px; height: 40px; border: 4px solid var(--accent);
+            border-top: 4px solid var(--primary); border-radius: 50%;
+            animation: spin 1s linear infinite; margin: 0 auto 15px;
         }
-
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         footer {
@@ -251,10 +193,8 @@
 
 <div class="app-container">
     <header>
-        <div class="profile-wrapper">
-            <div class="profile-pic">
-                <img src="https://via.placeholder.com/150/ee4d2d/FFFFFF?text=KR" alt="Kang Ruli" style="width:100%; height:100%; object-fit:cover;">
-            </div>
+        <div class="profile-pic">
+            <img src="https://via.placeholder.com/150/ee4d2d/FFFFFF?text=KR" alt="Kang Ruli">
         </div>
         <h1>Toko Kang Ruli</h1>
         <p class="tagline">"Pilihan Jujur, Harga Akur. Dipilih pake hati."</p>
@@ -281,28 +221,47 @@
 </div>
 
 <script>
-    // --- PENTING: ISI LINK CSV DI SINI ---
-    const googleSheetURL = "https://docs.google.com/spreadsheets/d/1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs/edit?usp=sharing";
-    // -------------------------------------
+    // --- PENTING: GANTI DENGAN LINK CSV PUBLISH TO WEB ANDA ---
+    // Link asli: https://docs.google.com/spreadsheets/d/1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs/edit?usp=sharing
+    // Link di bawah ini adalah CONTOH format yang benar (Publish to Web sebagai CSV)
+    const googleSheetURL = "https://docs.google.com/spreadsheets/d/1pAKjzozBh7PsOnWqa_hjRcjABFSDbop7pf7MIzYZKEs/edit?usp=sharing"; // <--- GANTI DI SINI
+    // -------------------------------------------------------------
 
     let products = [];
     const listContainer = document.getElementById('productList');
 
-    // Mengambil data
-    fetch(googleSheetURL)
-    .then(response => response.text())
-    .then(csvText => {
-        products = parseCSV(csvText);
-        renderProducts(products);
-    })
-    .catch(error => {
-        listContainer.innerHTML = `
-            <div class="loading">
-                <p>Gagal memuat data.</p>
-                <small>Pastikan Link CSV sudah benar & di-publish.</small>
-            </div>`;
-        console.error('Error:', error);
-    });
+    // Mengambil data dari URL Publik CSV
+    function fetchData() {
+        if (googleSheetURL.includes("GANTI_INI_DENGAN_LINK_CSV_PUBLIK_ANDA")) {
+            listContainer.innerHTML = `
+                <div class="loading">
+                    <p>⚠️ ERROR: Harap ganti variabel <code>googleSheetURL</code> dengan Link CSV Publik Anda.</p>
+                </div>`;
+            return;
+        }
+
+        fetch(googleSheetURL)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Gagal mengambil data. Status HTTP: ' + response.status);
+            }
+            return response.text();
+        })
+        .then(csvText => {
+            products = parseCSV(csvText);
+            renderProducts(products);
+        })
+        .catch(error => {
+            listContainer.innerHTML = `
+                <div class="loading">
+                    <p>Gagal memuat data:</p>
+                    <small>${error.message}</small>
+                    <small>Pastikan Link CSV sudah benar & di-publish.</small>
+                </div>`;
+            console.error('Error:', error);
+        });
+    }
+
 
     // Render Produk dengan Desain Baru
     function renderProducts(data) {
@@ -313,6 +272,7 @@
         }
         
         data.forEach(item => {
+            // Lewati baris header
             if(!item.name || item.name.toLowerCase().includes("nama produk")) return; 
 
             const card = document.createElement('a');
@@ -320,7 +280,6 @@
             card.href = item.link;
             card.target = "_blank";
             
-            // Format angka harga jika perlu (opsional), saat ini menampilkan raw data
             card.innerHTML = `
                 <div class="info">
                     <div class="title">${item.name}</div>
@@ -342,28 +301,41 @@
         });
     }
 
-    // Fungsi Search Filter
-    function filterProducts() {
+    // Fungsi Search Filter (Global agar bisa diakses dari onkeyup)
+    window.filterProducts = function() {
         const term = document.getElementById('searchInput').value.toLowerCase();
         const filtered = products.filter(p => p.name && p.name.toLowerCase().includes(term));
         renderProducts(filtered);
     }
 
-    // CSV Parser Robust
+    // CSV Parser Robust (Sedikit disederhanakan)
     function parseCSV(text) {
-        const lines = text.split('\n');
+        // Membagi baris
+        const lines = text.trim().split('\n');
+        
+        // Asumsi baris pertama adalah header
+        const headers = ["name", "price", "sold", "link"]; 
+        
+        // Memproses data (menggunakan regex sederhana untuk memisahkan koma di luar kutip)
         return lines.map(line => {
-            const parts = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-            if (!parts || parts.length < 4) return {};
+            // Memisahkan berdasarkan koma yang tidak ada di dalam kutip
+            const parts = line.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || []; 
+            
+            if (parts.length < 4) return {}; // Skip baris yang tidak lengkap
+
             const clean = (str) => str ? str.replace(/^"|"$/g, '').trim() : '';
+            
             return {
                 name: clean(parts[0]),
                 price: clean(parts[1]),
                 sold: clean(parts[2]),
                 link: clean(parts[3])
             };
-        });
+        }).filter(item => Object.keys(item).length > 0); // Hapus baris kosong
     }
+
+    // Panggil fungsi pengambilan data saat halaman dimuat
+    fetchData();
 </script>
 
 </body>
